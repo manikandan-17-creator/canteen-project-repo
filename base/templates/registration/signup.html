@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LICET Cafeteria - Sign Up</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'accounts/styles-signup.css' %}"> <!-- Link to your sign-up CSS file -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Full-Screen Background -->
+  <div class="fullscreen-bg"></div>
+
+  <!-- Logo and Title -->
+  <div class="logo-container">
+    <img src="{% static 'accounts/logo.png' %}" alt="LICET Cafeteria Logo" class="logo">
+    <h1>LICET Cafeteria</h1>
+  </div>
+
+  <!-- Sign-Up Form -->
+  <div class="signup-container">
+    <form class="signup-form" method="post">
+      {% csrf_token %}
+      <h2>Sign Up</h2>
+      {{ form.as_p }} <!-- Render Django form fields -->
+      <button type="submit">Sign Up</button>
+      <div class="divider">or</div>
+      <button class="google-btn" type="button">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google Logo">
+        Continue with Google
+      </button>
+      <p class="login-link">Already have an account? <a href="{% url 'login' %}">Login</a></p> <!-- Link to login page -->
+    </form>
+  </div>
+</body>
+</html>
+
