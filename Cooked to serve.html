@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LICET Cafeteria - Cooked to Serve</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-image: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            --hot-color: #08a152;
+            --cold-color: #b10404;
+            --healthy-color: #013d7e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.7)), var(--bg-image);
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding-top: 120px; /* Increased to ensure enough space for marquee and logo */
+        }
+
+        .top-marquee {
+            width: 100%;
+            background-color: #013d7e;
+            color: white;
+            padding: 10px 0;
+            font-weight: 300;
+            font-size: 1rem;
+            position: fixed;
+            top: 0;
+            z-index: 1002;
+            text-align: center;
+        }
+
+        /* Added Beverage Menu Heading */
+        .menu-heading {
+            text-align: center;
+            margin: 1rem 0 2rem;
+            color: #2c3e50;
+            font-size: 2.2rem;
+        }
+
+
+         /* Existing styles remain unchanged */
+        :root {
+            --bg-image: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            --hot-color: #ff6666;
+            --cold-color: #66b3ff;
+            --healthy-color: #013d7e;
+        }
+
+        .hamburger-menu,
+        .user-button {
+            top: 50px;
+        }
+
+        .hamburger-menu {
+            position: fixed;
+            left: 20px;
+            cursor: pointer;
+            z-index: 1001;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .hamburger-menu .bar {
+            width: 25px;
+            height: 3px;
+            background: #2c3e50;
+            margin: 5px 0;
+            transition: 0.4s;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background: rgba(255,255,255,0.95);
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            padding-top: 60px;
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 15px 25px;
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .sidebar a:hover {
+            background: rgba(0,0,0,0.05);
+        }
+
+        .user-button {
+            position: fixed;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1001;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 15px;
+            border-radius: 25px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .user-button img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #fff;
+        }
+
+        .user-button:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-2px);
+        }
+
+        .user-info {
+            font-weight: 500;
+            color: #2c3e50;
+            font-size: 0.9rem;
+        }
+
+        .header-logo {
+            text-align: center;
+            padding: 10px 0 0;
+        }
+
+        .header-logo img {
+            width: 90px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        .header-logo h1 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .category-section {
+            margin-bottom: 4rem;
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .category-header h2 {
+            font-size: 1.8rem;
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .scroll-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 2rem;
+            padding-bottom: 1rem;
+            scroll-behavior: smooth;
+        }
+
+        .beverage-card {
+            min-width: 250px;
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .beverage-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .beverage-image {
+            width: 100%;
+            height: 180px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+        }
+
+        .price-tag {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .order-btn {
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .hot-beverages .category-header h2 { border-left: 5px solid var(--hot-color); color: var(--hot-color); }
+        .cold-beverages .category-header h2 { border-left: 5px solid var(--cold-color); color: var(--cold-color); }
+        .healthy-choices .category-header h2 { border-left: 5px solid var(--healthy-color); color: var(--healthy-color); }
+
+        .hot-beverages .price-tag { color: var(--hot-color); }
+        .cold-beverages .price-tag { color: var(--cold-color); }
+        .healthy-choices .price-tag { color: var(--healthy-color); }
+
+        .hot-beverages .order-btn { background: var(--hot-color); }
+        .cold-beverages .order-btn { background: var(--cold-color); }
+        .healthy-choices .order-btn { background: var(--healthy-color); }
+
+        .cart-button {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--cold-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="top-marquee">
+        <marquee behavior="scroll" direction="left" scrollamount="6">
+            Welcome to LICET Cafeteria | Fresh Meals Served Hot | Pickup slots are available from 12:40 PM to 1:05 PM | Slots will be confirmed and assigned only after billing is completed. Thank you!
+</marquee>
+        </marquee>
+    </div>
+
+    <!-- Hamburger Menu -->
+    <div class="hamburger-menu" onclick="toggleSidebar()">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+
+    <!-- User Button -->
+    <div class="user-button">
+        <img src="images/User-Logo.jpg" alt="User Profile">
+        <span class="user-info">User Name</span>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <a href="#">Home</a>
+        <a href="#">Menu</a>
+        <a href="#">Cart</a>
+        <a href="#">Contact</a>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="header-logo">
+        <img src="images/licet_logo.png" alt="LICET Cafeteria Logo">
+        <h1>LICET Cafeteria</h1>
+    </div>
+    
+    <!-- Added Beverage Menu Heading -->
+    <h1 class="menu-heading">Cooked to Serve</h1>
+    <p class="menu-heading">Freshly made, just the way you crave!</p>
+
+    <div class="container">
+        <!-- Existing beverage sections remain unchanged -->
+        <!-- ... (keep all the existing beverage sections as they are) ... -->
+    </div>
+
+    <script>
+        // Toggle Sidebar
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+        }
+
+        // Close sidebar when clicking outside
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const hamburger = document.querySelector('.hamburger-menu');
+            
+            if (!sidebar.contains(event.target) && !hamburger.contains(event.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LICET Cafeteria - Cooked to Serve</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-image: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            --hot-color: #08a152;
+            --cold-color: #b10404;
+           
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.7)), var(--bg-image);
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        .header-logo {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .header-logo img {
+            width: 80px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .header-logo h1 {
+            font-size: 2rem;
+            color: #2c3e50;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .category-section {
+            margin-bottom: 4rem;
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .category-header h2 {
+            font-size: 1.8rem;
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .scroll-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 2rem;
+            padding-bottom: 1rem;
+            scroll-behavior: smooth;
+        }
+
+        .beverage-card {
+            min-width: 250px;
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .beverage-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .beverage-image {
+            width: 100%;
+            height: 180px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+        }
+
+        .price-tag {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .order-btn {
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.3s ease;
+        }
+
+               
+
+        .hot-beverages .category-header h2 { border-left: 5px solid var(--hot-color); color: var(--hot-color); }
+        .cold-beverages .category-header h2 { border-left: 5px solid var(--cold-color); color: var(--cold-color); }
+        .healthy-choices .category-header h2 { border-left: 5px solid var(--healthy-color); color: var(--healthy-color); }
+
+        .hot-beverages .price-tag { color: var(--hot-color); }
+        .cold-beverages .price-tag { color: var(--cold-color); }
+        .healthy-choices .price-tag { color: var(--healthy-color); }
+
+        .hot-beverages .order-btn { background: var(--hot-color); }
+        .cold-beverages .order-btn { background: var(--cold-color); }
+        .healthy-choices .order-btn { background: var(--healthy-color); }
+
+        .cart-button {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--healthy-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Veg Fried Rice & Noodles -->
+        <section class="category-section hot-beverages">
+            <div class="category-header">
+                <h2>Lunch Veg</h2>
+            </div>
+            <div class="scroll-container">
+                <div class="beverage-card">
+                    <img src="images/Veg Fried Rice.jpg" class="beverage-image" alt="Masala Chai">
+                    <h3>Veg Fried Rice</h3>
+                    <p>Wok-fried goodness in every forkful</p>
+                    <div class="price-tag">₹80</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>
+                <div class="beverage-card">
+                    <img src="images/Gobi Fried Rice.jpg" class="beverage-image" alt="Filter Coffee">
+                    <h3>Gobi Fried Rice</h3>
+                    <p>Crispy Gobi meets spicy stir-fry</p>
+                    <div class="price-tag">₹70</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>
+                <div class="beverage-card">
+                    <img src="images/Paneer Fried Rice.jpg" class="beverage-image" alt="Hot Chocolate">
+                    <h3>Paneer Fried Rice</h3>
+                    <p>Paneer power in every bite</p>
+                    <div class="price-tag">₹80</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>
+                <div class="beverage-card">
+                    <img src="images/Mushroom Fried Rice.jpg" class="beverage-image" alt="Green Tea">
+                    <h3>Mushroom Fried Rice</h3>
+                    <p>Mushrooms made mouthwatering</p>
+                    <div class="price-tag">₹75</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>
+                <div class="beverage-card">
+                    <img src="images/Schezwan Veg Rice.jpg" class="beverage-image" alt="Cappuccino">
+                    <h3>Schezwan Veg Rice</h3>
+                    <p>Spice up your life, one bite at a time</p>
+                    <div class="price-tag">₹70</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>
+                <div class="beverage-card">
+                    <img src="images/Mixed Veg Rice.jpg" class="beverage-image" alt="Turmeric Tea">
+                    <h3>Mixed Veg Rice</h3>
+                    <p>A riot of flavors in one bowl</p>
+                    <div class="price-tag">₹80</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- Non-Veg -->
+        <section class="category-section cold-beverages">
+            <div class="category-header">
+                <h2>Non-Veg</h2>
+            </div>
+            <div class="scroll-container">
+                <div class="beverage-card">
+                    <img src="images/Egg Fried Rice.jpg" class="beverage-image" alt="Lemonade">
+                    <h3>Egg Fried Rice</h3>
+                    <p>Egged up for extra taste</p>
+                    <div class="price-tag">₹60</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>
+                <div class="beverage-card">
+                    <img src="images/Chicken Fried Rice.jpg" class="beverage-image" alt="Iced Coffee">
+                    <h3>Chicken Fried Rice</h3>
+                    <p>The perfect wok-tossed bite</p>
+                    <div class="price-tag">₹75</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>
+                <div class="beverage-card">
+                    <img src="images/Schezwan Chicken Rice.jpg" class="beverage-image" alt="Milkshake">
+                    <h3>Schezwan Chicken Rice</h3>
+                    <p>Spicy, saucy, and bold</p>
+                    <div class="price-tag">₹70</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>
+                <div class="beverage-card">
+                    <img src="images/Chicken Chilli Parotta.jpg" class="beverage-image" alt="Soda">
+                    <h3>Chicken Chilli Parotta</h3>
+                    <p>Heat, meat, and flaky street</p>
+                    <div class="price-tag">₹90</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>   
+            </div>
+        </section>
+        
+        <!--Veg -->
+        <section class="category-section hot-beverages">
+            <div class="category-header">
+                <h2>Veg Noodles</h2>
+            </div>
+            <div class="scroll-container">
+                <div class="beverage-card">
+                    <img src="images/Veg Noodles.jpg" class="beverage-image" alt="Lemonade">
+                    <h3>Veg Noodles</h3>
+                    <p>Wok-fried goodness in every forkful</p>
+                    <div class="price-tag">₹60</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>
+                <div class="beverage-card">
+                    <img src="images/Gobi Noodles.jpg" class="beverage-image" alt="Iced Coffee">
+                    <h3>Gobi Noodles</h3>
+                    <p>Crispy Gobi meets spicy stir-fry</p>
+                    <div class="price-tag">₹75</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>
+                <div class="beverage-card">
+                    <img src="images/Paneer Noodles.jpg" class="beverage-image" alt="Milkshake">
+                    <h3>Paneer Noodles</h3>
+                    <p>Paneer power in every bite</p>
+                    <div class="price-tag">₹70</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>
+                <div class="beverage-card">
+                    <img src="images/Mushroom Noodles.jpg" class="beverage-image" alt="Soda">
+                    <h3>Mushroom Noodles</h3>
+                    <p>Mushrooms made mouthwatering</p>
+                    <div class="price-tag">₹80</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div> 
+                <div class="beverage-card">
+                    <img src="images/Schezwan Veg Noodles.jpg" class="beverage-image" alt="Soda">
+                    <h3>Schezwan Veg Noodles</h3>
+                    <p>Spice up your life, one bite at a time</p>
+                    <div class="price-tag">₹80</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>     
+            </div>
+        </section>
+
+        <!-- Non-Veg -->
+        <section class="category-section cold-beverages">
+            <div class="category-header">
+                <h2>Non-Veg</h2>
+            </div>
+            <div class="scroll-container">
+                <div class="beverage-card">
+                    <img src="images/Egg Noodles.jpg" class="beverage-image" alt="Lemonade">
+                    <h3>Egg Noodles</h3>
+                    <p>Egged up for extra taste</p>
+                    <div class="price-tag">₹60</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>
+                <div class="beverage-card">
+                    <img src="images/Chicken Noodles.jpg" class="beverage-image" alt="Iced Coffee">
+                    <h3>Chicken Noodles</h3>
+                    <p>The perfect wok-tossed bite</p>
+                    <div class="price-tag">₹75</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>
+                <div class="beverage-card">
+                    <img src="images/Schezwan Chicken Noodles.jpg" class="beverage-image" alt="Milkshake">
+                    <h3>chezwan Chicken Noodles</h3>
+                    <p>Spicy, saucy, and bold</p>
+                    <div class="price-tag">₹70</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div> 
+            </div>
+        </section>
+
+        <button class="cart-button">🛒 Cart (<span id="cart-count">0</span>)</button>
+    </div>
+
+
+    <script>
+        let cartCount = 0;
+        const cartElement = document.getElementById('cart-count');
+        
+        document.querySelectorAll('.order-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                cartCount++;
+                cartElement.textContent = cartCount;
+            });
+        });
+    </script>
+</body>
+</html>
