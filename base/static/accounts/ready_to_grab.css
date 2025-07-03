@@ -11,8 +11,6 @@
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-
-
 .hamburger-menu .bar {
     width: 25px;
     height: 3px;
@@ -50,6 +48,42 @@
     background: rgba(0,0,0,0.05);
 }
 
+/* User Button Styles */
+.user-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 8px 15px;
+    border-radius: 25px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.user-button img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+}
+
+.user-button:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: translateY(-2px);
+}
+
+.user-info {
+    font-weight: 500;
+    color: #2c3e50;
+    font-size: 0.9rem;
+}
+
 /* Beverage Menu Heading */
 .menu-heading {
     text-align: center;
@@ -61,9 +95,9 @@
 /* Root Variables */
 :root {
     --bg-image: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-    --hot-color: #ff6666;
-    --cold-color: #66b3ff;
-    --healthy-color: #66cc66;
+    --hot-color: #08a152;
+    --cold-color: #b10404;
+    --healthy-color: #013d7e;
 }
 
 /* Base Styles */
@@ -175,55 +209,17 @@ body {
 .cold-beverages .order-btn { background: var(--cold-color); }
 .healthy-choices .order-btn { background: var(--healthy-color); }
 
-/* User Button Styles */
-.user-button {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    z-index: 1000;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 8px 15px;
-    border-radius: 25px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.user-button img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #fff;
-}
-
-.user-button:hover {
-    background: rgba(255, 255, 255, 1);
-    transform: translateY(-2px);
-}
-
-.user-info {
-    font-weight: 500;
-    color: #2c3e50;
-    font-size: 0.9rem;
-}
-
 /* Cart Button Styles */
 .cart-button {
     position: fixed;
     bottom: 2rem;
     right: 2rem;
-    background: var(--cold-color);
+    background: var(--healthy-color);
     color: white;
     padding: 1rem 2rem;
     border-radius: 30px;
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    border: none;
-    font-size: 1rem;
 }
 
 /* Responsive Styles */
@@ -238,13 +234,4 @@ body {
         width: 35px;
         height: 35px;
     }
-    
-    .beverage-card {
-        min-width: 200px;
-    }
-    
-    .menu-heading {
-        font-size: 1.8rem;
-    }
-    
 }

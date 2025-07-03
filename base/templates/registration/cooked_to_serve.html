@@ -1,15 +1,214 @@
- {% load static %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cooked to Serve - LICET Cafeteria</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>LICET Cafeteria - Cooked to Serve</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'accounts/cooked_to_serve.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Content for Cooked-to-Serve page -->
-    <h1>Freshly Prepared Meals</h1>
-    <!-- Add your content here -->
-</body>
-</html>
+
+    <div class="container">
+        <!-- Veg Fried Rice & Noodles -->
+        <section class="category-section hot-beverages">
+            <div class="category-header">
+                <h2>Lunch Veg</h2>
+            </div>
+            <div class="scroll-container">
+                <div class="beverage-card">
+                    <img src="images/Veg Fried Rice.jpg" class="beverage-image" alt="Masala Chai">
+                    <h3>Veg Fried Rice</h3>
+                    <p>Wok-fried goodness in every forkful</p>
+                    <div class="price-tag">₹80</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>
+                <div class="beverage-card">
+                    <img src="images/Gobi Fried Rice.jpg" class="beverage-image" alt="Filter Coffee">
+                    <h3>Gobi Fried Rice</h3>
+                    <p>Crispy Gobi meets spicy stir-fry</p>
+                    <div class="price-tag">₹70</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>
+                <div class="beverage-card">
+                    <img src="images/Paneer Fried Rice.jpg" class="beverage-image" alt="Hot Chocolate">
+                    <h3>Paneer Fried Rice</h3>
+                    <p>Paneer power in every bite</p>
+                    <div class="price-tag">₹80</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>
+                <div class="beverage-card">
+                    <img src="images/Mushroom Fried Rice.jpg" class="beverage-image" alt="Green Tea">
+                    <h3>Mushroom Fried Rice</h3>
+                    <p>Mushrooms made mouthwatering</p>
+                    <div class="price-tag">₹75</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>
+                <div class="beverage-card">
+                    <img src="images/Schezwan Veg Rice.jpg" class="beverage-image" alt="Cappuccino">
+                    <h3>Schezwan Veg Rice</h3>
+                    <p>Spice up your life, one bite at a time</p>
+                    <div class="price-tag">₹70</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>
+                <div class="beverage-card">
+                    <img src="images/Mixed Veg Rice.jpg" class="beverage-image" alt="Turmeric Tea">
+                    <h3>Mixed Veg Rice</h3>
+                    <p>A riot of flavors in one bowl</p>
+                    <div class="price-tag">₹80</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- Non-Veg -->
+        <section class="category-section cold-beverages">
+            <div class="category-header">
+                <h2>Non-Veg</h2>
+            </div>
+            <div class="scroll-container">
+                <div class="beverage-card">
+                    <img src="images/Egg Fried Rice.jpg" class="beverage-image" alt="Lemonade">
+                    <h3>Egg Fried Rice</h3>
+                    <p>Egged up for extra taste</p>
+                    <div class="price-tag">₹60</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>
+                <div class="beverage-card">
+                    <img src="images/Chicken Fried Rice.jpg" class="beverage-image" alt="Iced Coffee">
+                    <h3>Chicken Fried Rice</h3>
+                    <p>The perfect wok-tossed bite</p>
+                    <div class="price-tag">₹75</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>
+                <div class="beverage-card">
+                    <img src="images/Schezwan Chicken Rice.jpg" class="beverage-image" alt="Milkshake">
+                    <h3>Schezwan Chicken Rice</h3>
+                    <p>Spicy, saucy, and bold</p>
+                    <div class="price-tag">₹70</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>
+                <div class="beverage-card">
+                    <img src="images/Chicken Chilli Parotta.jpg" class="beverage-image" alt="Soda">
+                    <h3>Chicken Chilli Parotta</h3>
+                    <p>Heat, meat, and flaky street</p>
+                    <div class="price-tag">₹90</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>   
+            </div>
+        </section>
+        
+        <!--Veg -->
+        <section class="category-section hot-beverages">
+            <div class="category-header">
+                <h2>Veg Noodles</h2>
+            </div>
+            <div class="scroll-container">
+                <div class="beverage-card">
+                    <img src="images/Veg Noodles.jpg" class="beverage-image" alt="Lemonade">
+                    <h3>Veg Noodles</h3>
+                    <p>Wok-fried goodness in every forkful</p>
+                    <div class="price-tag">₹60</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>
+                <div class="beverage-card">
+                    <img src="images/Gobi Noodles.jpg" class="beverage-image" alt="Iced Coffee">
+                    <h3>Gobi Noodles</h3>
+                    <p>Crispy Gobi meets spicy stir-fry</p>
+                    <div class="price-tag">₹75</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>
+                <div class="beverage-card">
+                    <img src="images/Paneer Noodles.jpg" class="beverage-image" alt="Milkshake">
+                    <h3>Paneer Noodles</h3>
+                    <p>Paneer power in every bite</p>
+                    <div class="price-tag">₹70</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>
+                <div class="beverage-card">
+                    <img src="images/Mushroom Noodles.jpg" class="beverage-image" alt="Soda">
+                    <h3>Mushroom Noodles</h3>
+                    <p>Mushrooms made mouthwatering</p>
+                    <div class="price-tag">₹80</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div> 
+                <div class="beverage-card">
+                    <img src="images/Schezwan Veg Noodles.jpg" class="beverage-image" alt="Soda">
+                    <h3>Schezwan Veg Noodles</h3>
+                    <p>Spice up your life, one bite at a time</p>
+                    <div class="price-tag">₹80</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>     
+            </div>
+        </section>
+
+        <!-- Non-Veg -->
+        <section class="category-section cold-beverages">
+            <div class="category-header">
+                <h2>Non-Veg</h2>
+            </div>
+            <div class="scroll-container">
+                <div class="beverage-card">
+                    <img src="images/Egg Noodles.jpg" class="beverage-image" alt="Lemonade">
+                    <h3>Egg Noodles</h3>
+                    <p>Egged up for extra taste</p>
+                    <div class="price-tag">₹60</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>
+                <div class="beverage-card">
+                    <img src="images/Chicken Noodles.jpg" class="beverage-image" alt="Iced Coffee">
+                    <h3>Chicken Noodles</h3>
+                    <p>The perfect wok-tossed bite</p>
+                    <div class="price-tag">₹75</div>
+                    <button type ="button" value="{{ product.id }}" class="order-btn"  id = "add-cart">Add to Cart</button>
+                </div>
+                <div class="beverage-card">
+                    <img src="images/Schezwan Chicken Noodles.jpg" class="beverage-image" alt="Milkshake">
+                    <h3>chezwan Chicken Noodles</h3>
+                    <p>Spicy, saucy, and bold</p>
+                    <div class="price-tag">₹70</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div> 
+            </div>
+        </section>
+    <a href="{% url 'cart' %} ">
+        <button class="cart-button">🛒 Cart (<span id="cart-count">0</span>)</button>
+    </a>
+    </div>
+
+
+    <script>
+    let cartCount = 0;
+    const cartElement = document.getElementById('cart-count');
+
+    // Add event listener to all buttons with class "order-btn"
+    document.querySelectorAll('.order-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            // 1. Increment cart count and update UI
+            cartCount++;
+            cartElement.textContent = cartCount;
+
+            // 2. Send AJAX request to Django server
+            $.ajax({
+                type: 'POST',
+                url: '{% url "cart_add" %}',
+                data: {
+                    product_id: button.value,  // Get value from the clicked button
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    action: 'post'
+                },
+                success: function (json) {
+                    console.log("Item added to cart:", json);
+                },
+                error: function(xhr, errmsg, err) {
+                    console.error("Error adding to cart:", errmsg);
+                }
+            });
+        });
+    });
+    </script>
+

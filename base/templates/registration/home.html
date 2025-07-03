@@ -1,169 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - LICET Cafeteria</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        .profile-section {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-            padding: 20px;
-            margin-top: 30px;
-        }
-        .profile-img {
-            width: 120px;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 5px solid #f1f1f1;
-        }
-        .profile-icon {
-            font-size: 4rem;
-            color: #6c757d;
-        }
-        .welcome-message {
-            color: #2c3e50;
-            font-weight: 600;
-        }
-        .menu-card {
-            transition: transform 0.3s;
-            cursor: pointer;
-            border: none;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .menu-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-        }
-        .menu-card a {
-            text-decoration: none;
-            color: inherit;
-        }
-        .card-body {
-            padding: 1.5rem;
-        }
-        .card-title {
-            color: #2c3e50;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-        }
-        .card-text {
-            color: #666;
-        }
-        .nav-profile-img {
-            width: 30px;
-            height: 30px;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-        .profile-placeholder {
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background-color: #f1f1f1;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LICET Cafeteria</title>
+
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'accounts/home.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container">
-            <a class="navbar-brand" href="#">LICET Cafeteria</a>
-            <div class="d-flex align-items-center">
-                {% if user.is_authenticated %}
-                <div class="dropdown">
-                    <button class="btn btn-light dropdown-toggle d-flex align-items-center" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
-                        {% if user.profile.profile_picture and user.profile.profile_picture != 'profile_pics/default.jpg' %}
-                            <img src="{{ user.profile.profile_picture.url }}" alt="Profile" class="nav-profile-img">
-                        {% else %}
-                            <div class="profile-placeholder">
-                                <i class="bi bi-person-fill text-muted"></i>
-                            </div>
-                        {% endif %}
-                        <span class="ms-2">{{ user.username }}</span>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="{% url 'update_profile' %}">Update Profile</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
-                    </ul>
-                </div>
-                {% endif %}
-            </div>
-        </div>
-    </nav>
+  <!-- Top Marquee -->
+  <div class="top-marquee">
+    <marquee behavior="scroll" direction="left" scrollamount="8">
+      Welcome to LICET Cafeteria | Fresh Meals Served Hot | Pickup slots are available from 12:40 PM to 1:05 PM | Slots will be confirmed and assigned only after billing is completed. Thank you!
+    </marquee>
+  </div>
 
-    <div class="container py-5">
-        <div class="profile-section text-center">
-            <h1 class="welcome-message">Welcome, {{ user.username }}!</h1>
-            
-            <!-- In the main profile section -->
-            {% if user.profile.profile_picture and user.profile.profile_picture != 'profile_pics/default.jpg' %}
-                <img src="{{ user.profile.profile_picture.url }}" alt="Profile Picture" class="profile-img my-4">
-            {% else %}
-                <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-light my-4" style="width: 120px; height: 120px; border: 5px solid #f1f1f1;">
-                    <i class="bi bi-person-fill profile-icon"></i>
-                </div>
-            {% endif %}
-                        
-            <p class="lead">Enjoy your dining experience at LICET Cafeteria</p>
-            
-            <div class="row mt-5">
-                <!-- Ready-to-Grab Card -->
-                <div class="col-md-4 mb-4">
-                    <div class="card menu-card h-100">
-                        <a href="{% url 'ready_to_grab' %}">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Ready-to-Grab</h5>
-                                <p class="card-text">Quick meals ready for pickup</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Cooked-to-Serve Card -->
-                <div class="col-md-4 mb-4">
-                    <div class="card menu-card h-100">
-                        <a href="{% url 'cooked_to_serve' %}">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Cooked-to-Serve</h5>
-                                <p class="card-text">Freshly prepared meals</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Beverages Card -->
-                <div class="col-md-4 mb-4">
-                    <div class="card menu-card h-100">
-                        <a href="{% url 'beverages' %}">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Beverages</h5>
-                                <p class="card-text">Refreshments and drinks</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <!-- Hamburger Menu -->
+  <div class="hamburger-menu" onclick="toggleSidebar()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+
+  <!-- Centered Logo and Title -->
+  <header class="centered-header">
+    <img src="{% static 'Images/Landing Page/licet_logo.png' %}" alt="LICET Cafeteria Logo" class="logo">
+    <h1>LICET Cafeteria</h1>
+  </header>
+
+  <!-- Sidebar with Icons -->
+  <nav class="sidebar" id="sidebar">
+
+    <a href="{% url 'update_profile' %}"><img src="{% static 'Images/Landing Page/settings.jpg' %}" alt="Settings"></a>
+  </nav>
+
+  <!-- Centered Content -->
+  <main class="centered-content">
+    <!-- Ready-to-Grab Section -->
+    <section class="section ready-to-grab">
+      <h2>Ready-to-Grab</h2>
+      <p>Grab pre-cooked meals ready to pick.</p>
+      <div class="items">
+        <a href="#"><img src="{% static 'Images/Landing Page/biryani.jpg' %}" alt="Biryani"></a>
+        <a href="#"><img src="{% static 'Images/Landing Page/idli.jpg' %}" alt="Idli"></a>
+        <a href="#"><img src="{% static 'Images/Landing Page/south-indian.jpg' %}" alt="South Indian Meals"></a>
+      </div>
+      <a href="{% url 'ready_to_grab' %}" class="button grab-go">Grab & Go</a>
+    </section>
+
+    <!-- Cooked-to-Serve Section -->
+    <section class="section cooked-to-serve">
+      <h2>Cooked-to-Serve</h2>
+      <p>Pick up hot & fresh, right on time.</p>
+      <div class="items">
+        <a href="#"><img src="{% static 'Images/Landing Page/chinese.jpg' %}" alt="Chinese"></a>
+        <a href="#"><img src="{% static 'Images/Landing Page/Parotta.jpg' %}" alt="Parotta"></a>
+        <a href="#"><img src="{% static 'Images/Landing Page/dosa.jpg' %}" alt="Dosa"></a>
+      </div>
+      <a href="{% url 'cooked_to_serve' %}" class="button fresh-spot">Fresh on Spot</a>
+    </section>
+
+    <!-- Beverages Section -->
+    <section class="section beverages">
+      <h2>Beverages</h2>
+      <p>Quench your thirst with refreshing drinks.</p>
+      <div class="items">
+        <a href="#"><img src="{% static 'Images/Landing Page/coffee.jpg' %}" alt="Coffee"></a>
+        <a href="#"><img src="{% static 'Images/Landing Page/juice.jpg' %}" alt="Juice"></a>
+        <a href="#"><img src="{% static 'Images/Landing Page/soda.jpg' %}" alt="Soda"></a>
+      </div>
+      <a href="{% url 'beverages' %}" class="button beverages-btn">Order Now</a>
+    </section>
+
+    <!-- Snacks Section -->
+    <section class="section snacks">
+      <h2>Snacks</h2>
+      <p>Enjoy quick bites and snacks.</p>
+      <div class="items">
+        <a href="#"><img src="{% static 'Images/Landing Page/samosa.jpg' %}" alt="Samosa"></a>
+        <a href="#"><img src="{% static 'Images/Landing Page/Bread-Omellet.jpg' %}" alt="Bread-Omellet"></a>
+        <a href="#"><img src="{% static 'Images/Landing Page/chips.jpg' %}" alt="Chips"></a>
+      </div>
+      <a href="{% url 'snacks' %}" class="button snacks-btn">Order Now</a>
+    </section>
+
+    <!-- Side Dishes Section -->
+    <section class="section side-dishes">
+      <h2>Side Dishes</h2>
+      <p>Complement your meal with delicious sides.</p>
+      <div class="items">
+        <a href="#"><img src="{% static 'Images/Landing Page/fried.jpg' %}" alt="Fried"></a>
+        <a href="#"><img src="{% static 'Images/Landing Page/Poriyal.jpg' %}" alt="Poriyal"></a>
+        <a href="#"><img src="{% static 'Images/Landing Page/Side-Dips.jpg' %}" alt="Side-Dips"></a>
+      </div>
+      <a href="{% url 'sidedish' %}" class="button side-dishes-btn">Order Now</a>
+    </section>
+  </main>
+
+  <!-- User Name Button -->
+  {% if user.is_authenticated %}
+  <ul class="user-dropdown">
+    <li class="user-button" onclick="toggleUserMenu()">
+      {% if user.profile.profile_picture and user.profile.profile_picture.url != 'profile_pics/default.jpg' %}
+        <img src="{{ user.profile.profile_picture.url }}" alt="User Profile">
+      {% else %}
+        <img src="{% static 'Images/Landing Page/User-Logo.png' %}" alt="User Profile">
+      {% endif %}
+      <span class="user-info">{{ user.username }}</span>
+    </li>
+     <li> <a href="{% url 'update_profile' %}">Update Profile</a> </li>
+     <li> <a href="{% url 'logout' %}">Logout</a> </li>
+  </ul>
+  {% endif %}
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 LICET Cafeteria. All rights reserved.</p>
+    <div class="social-links">
+      <a href="#"><img src="{% static 'Images/Landing Page/facebook.jpg' %}" alt="Facebook"></a>
+      <a href="#"><img src="{% static 'Images/Landing Page/instagram.jpg' %}" alt="Instagram"></a>
+      <a href="#"><img src="{% static 'Images/Landing Page/X.png' %}" alt="Twitter"></a>
     </div>
+  </footer>
 
-    <footer class="bg-dark text-white text-center py-3 mt-5">
-        <div class="container">
-            <p>&copy; 2023 LICET Cafeteria. All rights reserved.</p>
-        </div>
-    </footer>
+  <!-- JavaScript for Hamburger Menu -->
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('active');
+    }
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  function toggleUserMenu() {
+    document.getElementById('userDropdown').classList.toggle('show');
+  }
+
+  
+
+  </script>
 </body>
 </html>
+
+
+
+

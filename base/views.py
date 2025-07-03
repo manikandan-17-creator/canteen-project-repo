@@ -5,8 +5,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .models import Profile 
+from .models import Profile, Product
+from django.http import JsonResponse
+import json
 
+products = Product.objects.all()
 
 @login_required
 def home(request):
@@ -90,10 +93,71 @@ def custom_logout(request):
     return redirect('login')  # Redirect to the login page (URL name must be 'login')
 
 def ready_to_grab(request):
-    return render(request, 'registration/ready_to_grab.html')
+    return render(request, 'registration/ready_to_grab.html',{'products':products})
 
 def cooked_to_serve(request):
-    return render(request, 'registration/cooked_to_serve.html')
+    return render(request, 'registration/cooked_to_serve.html',{'products':products})
 
 def beverages(request):
-    return render(request, 'registration/beverages.html')
+    return render(request, 'registration/beverages.html',{'products':products})
+
+def menu(request):
+    # Initialize cart count from session
+    cart_count = sum(request.session.get('cart', {}).values())
+    return render(request, 'menu.html', {'cart_count': cart_count})
+
+def add_to_cart(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        item_id = data.get('item_id')
+        
+        # Get or initialize cart in session
+        cart = request.session.get('cart', {})
+        cart[item_id] = cart.get(item_id, 0) + 1
+        
+        # Save updated cart to session
+        request.session['cart'] = cart
+        return JsonResponse({
+            'status': 'success',
+            'cart_count': sum(cart.values())
+        })
+    return JsonResponse({'status': 'error'}, status=400)
+
+def cart_2(request):
+    cart = request.session.get('cart', {})
+    cart_items = []
+    
+    # Sample item database (replace with your actual model)
+    ITEM_DB = {
+        '1': {'name': 'Veg Meals', 'price': 80},
+        '2': {'name': 'Sambar Rice', 'price': 70},
+        # Add all other items similarly...
+    }
+    
+    total = 0
+    for item_id, quantity in cart.items():
+        item = ITEM_DB.get(item_id)
+        if item:
+            item_total = item['price'] * quantity
+            cart_items.append({
+                'id': item_id,
+                'name': item['name'],
+                'price': item['price'],
+                'quantity': quantity,
+                'total': item_total
+            })
+            total += item_total
+    
+    return render(request, 'cart.html', {
+        'cart_items': cart_items,
+        'subtotal': total,
+        'discount': total * 0.05,
+        'total': total * 0.95
+    })
+
+
+def snacks(request):
+    return render(request, 'registration/snacks.html',{'products':products})
+
+def sidedish(request):
+    return render(request, 'registration/sidedish.html',{'products':products})

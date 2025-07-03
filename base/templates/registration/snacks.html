@@ -1,25 +1,14 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LICET Cafeteria - Beverages Menu</title>
-    {% load static %}
+    <title>LICET Cafeteria: Snacks</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'accounts/beverages_styles.css' %}">
-    
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'accounts/snacks.css' %}">
 </head>
-<body> 
-    <div class="top-marquee">
-        <marquee behavior="scroll" direction="left" scrollamount="6">
-            Welcome to LICET Cafeteria | Fresh Meals Served Hot | Pickup slots are available from 12:40 PM to 1:05 PM | Slots will be confirmed and assigned only after billing is completed. Thank you!
-        </marquee>
-    </div>
-
-
+<body>
     <!-- Hamburger Menu -->
     <div class="hamburger-menu" onclick="toggleSidebar()">
         <div class="bar"></div>
@@ -29,13 +18,13 @@
 
     <!-- User Button -->
     <div class="user-button">
-        <img src="user.jpg" alt="User Profile">
+        <img src="Images/Snacks/User-Logo.jpg" alt="User Profile">
         <span class="user-info">User Name</span>
     </div>
 
     <!-- Sidebar Navigation -->
     <nav class="sidebar" id="sidebar">
-        <a href="{% url 'home' %}">Home</a>
+        <a href="#">Home</a>
         <a href="#">Menu</a>
         <a href="#">Cart</a>
         <a href="#">Contact</a>
@@ -43,170 +32,168 @@
 
     <!-- Header Section -->
     <div class="header-logo">
-        <img src="logo.png" alt="LICET Cafeteria Logo">
+        <img src="Images/Snacks/licet_logo.png" alt="LICET Cafeteria Logo">
         <h1>LICET Cafeteria</h1>
     </div>
     
     <!-- Added Beverage Menu Heading -->
-    <h1 class="menu-heading">Beverage Menu</h1>
+    <h1 class="menu-heading">Snacks Menu</h1>
 
     <div class="container">
-        <!-- Hot Beverages -->
+        <!-- Puff Pastry -->
         <section class="category-section hot-beverages">
             <div class="category-header">
-                <h2>Hot Beverages</h2>
+                <h2>Puff Pastry</h2>
             </div>
             <div class="scroll-container">
                 <div class="beverage-card">
-                    <img src="images/Masala-chai.jpg" class="beverage-image" alt="Masala Chai">
-                    <h3>Masala Chai</h3>
-                    <p>Traditional spiced tea</p>
+                    <img src="Images/Snacks/chicken puff.jpg" class="beverage-image" alt="Masala Chai">
+                    <h3>Chicken Puff</h3>
+                    <p>Non-veg</p>
                     <div class="price-tag">₹25</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
                 <div class="beverage-card">
-                    <img src="images/filter-coffee.jpg" class="beverage-image" alt="Filter Coffee">
-                    <h3>Filter Coffee</h3>
-                    <p>South Indian special</p>
-                    <div class="price-tag">₹30</div>
-                    <button class="order-btn">Add to Cart</button>
-                </div>
-                <div class="beverage-card">
-                    <img src="images/Hot-chocolate.jpg" class="beverage-image" alt="Hot Chocolate">
-                    <h3>Hot Chocolate</h3>
-                    <p>Rich cocoa drink</p>
-                    <div class="price-tag">₹45</div>
-                    <button class="order-btn">Add to Cart</button>
-                </div>
-                <div class="beverage-card">
-                    <img src="images/Green-tea.jpg" class="beverage-image" alt="Green Tea">
-                    <h3>Green Tea</h3>
-                    <p>Antioxidant rich</p>
+                    <img src="Images/Snacks/veg-puff.jpg" class="beverage-image" alt="Filter Coffee">
+                    <h3>Veg Puff</h3>
+                    <p>Veg</p>
                     <div class="price-tag">₹20</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
                 <div class="beverage-card">
-                    <img src="images/Cappacino.jpg" class="beverage-image" alt="Cappuccino">
-                    <h3>Cappuccino</h3>
-                    <p>Foamy coffee</p>
+                    <img src="Images/Snacks/paneer-puff.jpg" class="beverage-image" alt="Hot Chocolate">
+                    <h3>Paneer Puff</h3>
+                    <p>Veg</p>
+                    <div class="price-tag">₹25</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>
+                <div class="beverage-card">
+                    <img src="Images/Snacks/egg-puff.jpg" class="beverage-image" alt="Green Tea">
+                    <h3>Egg Puff</h3>
+                    <p>Non-veg</p>
+                    <div class="price-tag">₹20</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>
+                <div class="beverage-card">
+                    <img src="Images/Snacks/small-samosa.jpg" class="beverage-image" alt="Cappuccino">
+                    <h3>Small Samosa's</h3>
+                    <p>Veg</p>
                     <div class="price-tag">₹50</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
                 <div class="beverage-card">
-                    <img src="images/Turmeric-tea.jpg" class="beverage-image" alt="Turmeric Tea">
-                    <h3>Turmeric Tea</h3>
-                    <p>Immunity booster</p>
-                    <div class="price-tag">₹35</div>
+                    <img src="Images/Snacks/Samosa.jpg" class="beverage-image" alt="Turmeric Tea">
+                    <h3>Samosa</h3>
+                    <p>Veg</p>
+                    <div class="price-tag">₹20</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
             </div>
         </section>
 
-        <!-- Cold Beverages -->
+        <!-- Specials -->
         <section class="category-section cold-beverages">
             <div class="category-header">
-                <h2>Cold Beverages</h2>
+                <h2>Specials</h2>
             </div>
             <div class="scroll-container">
                 <div class="beverage-card">
-                    <img src="images/Lemonade.jpg" class="beverage-image" alt="Lemonade">
-                    <h3>Lemonade</h3>
-                    <p>Sparkling citrus drink</p>
+                    <img src="Images/Snacks/plain-maggie.jpeg" class="beverage-image" alt="Lemonade">
+                    <h3>Plain Maggie</h3>
+                    <p>Veg</p>
                     <div class="price-tag">₹40</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
                 <div class="beverage-card">
-                    <img src="images/iced-Coffee.jpg" class="beverage-image" alt="Iced Coffee">
-                    <h3>Iced Coffee</h3>
-                    <p>Chilled coffee blend</p>
+                    <img src="Images/Snacks/cheese-maggie.jpg" class="beverage-image" alt="Iced Coffee">
+                    <h3>Cheese Maggie</h3>
+                    <p>Veg</p>
                     <div class="price-tag">₹55</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
                 <div class="beverage-card">
-                    <img src="images/milkshakes.jpg" class="beverage-image" alt="Milkshake">
-                    <h3>Milkshake</h3>
-                    <p>Creamy vanilla</p>
+                    <img src="Images/Snacks/Bread-omelette.jpg" class="beverage-image" alt="Milkshake">
+                    <h3>Bread Omelette</h3>
+                    <p>Non-Veg</p>
                     <div class="price-tag">₹60</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
                 <div class="beverage-card">
-                    <img src="images/soda.jpg" class="beverage-image" alt="Soda">
-                    <h3>Cold Soda</h3>
-                    <p>Chilled soft drink</p>
+                    <img src="Images/Snacks/cheese-Bread-Omelette.jpg" class="beverage-image" alt="Soda">
+                    <h3>Cheese Bread Omellete</h3>
+                    <p>Non-Veg</p>
                     <div class="price-tag">₹30</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
                 <div class="beverage-card">
-                    <img src="images/fruit-shakes.jpg" class="beverage-image" alt="Smoothie">
-                    <h3>Fruit Smoothie</h3>
-                    <p>Mixed berry blend</p>
+                    <img src="Images/Snacks/cut-lets.jpg" class="beverage-image" alt="Smoothie">
+                    <h3>Cutlet</h3>
+                    <p>Veg</p>
                     <div class="price-tag">₹65</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
                 <div class="beverage-card">
-                    <img src="images/iced-green-tea.jpg" class="beverage-image" alt="Iced Tea">
-                    <h3>Iced Tea</h3>
-                    <p>Lemon flavored</p>
+                    <img src="Images/Snacks/Roll-cutlet.jpg" class="beverage-image" alt="Iced Tea">
+                    <h3>Roll Cutlet</h3>
+                    <p>Veg</p>
                     <div class="price-tag">₹35</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
             </div>
         </section>
 
-        <!-- Healthy Choices -->
+        <!-- Sweets -->
         <section class="category-section healthy-choices">
             <div class="category-header">
-                <h2>Healthy Choices</h2>
+                <h2>Sweets</h2>
             </div>
             <div class="scroll-container">
                 <div class="beverage-card">
-                    <img src="images/detox-juice.jpg" class="beverage-image" alt="Detox Juice">
-                    <h3>Detox Juice</h3>
-                    <p>Green apple & kale</p>
-                    <div class="price-tag">₹65</div>
+                    <img src="Images/Snacks/Brownie.jpg" class="beverage-image" alt="Detox Juice">
+                    <h3>Brownie</h3>
+                    <p>Fudgy, chocolaty</p>
+                    <div class="price-tag">₹30</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
                 <div class="beverage-card">
-                    <img src="images/coconut-water.jpg" class="beverage-image" alt="Coconut Water">
-                    <h3>Coconut Water</h3>
-                    <p>Fresh natural drink</p>
-                    <div class="price-tag">₹45</div>
+                    <img src="Images/Snacks/oreo.jpg" class="beverage-image" alt="Coconut Water">
+                    <h3>Oreo</h3>
+                    <p>Creamy, crunchy, classic</p>
+                    <div class="price-tag">₹10</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
                 <div class="beverage-card">
-                    <img src="images/almond.jpg" class="beverage-image" alt="Almond Milk">
-                    <h3>Almond Milk</h3>
-                    <p>Dairy-free option</p>
-                    <div class="price-tag">₹55</div>
+                    <img src="Images/Snacks/lotte-choco-pie.jpg" class="beverage-image" alt="Almond Milk">
+                    <h3>lotte-choco-pie</h3>
+                    <p>Soft, marshmallowy</p>
+                    <div class="price-tag">₹10</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
                 <div class="beverage-card">
-                    <img src="images/vegetable.jpg" class="beverage-image" alt="Vegetable Juice">
-                    <h3>Vegetable Juice</h3>
-                    <p>Carrot & beetroot</p>
-                    <div class="price-tag">₹50</div>
+                    <img src="Images/Snacks/hersheys.jpg" class="beverage-image" alt="Vegetable Juice">
+                    <h3>Hershey's Chocolate</h3>
+                    <p>Rich, smooth, indulgent</p>
+                    <div class="price-tag">₹10</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
                 <div class="beverage-card">
-                    <img src="images/herbal-tea.jpg" class="beverage-image" alt="Herbal Tea">
-                    <h3>Herbal Tea</h3>
-                    <p>Chamomile infusion</p>
+                    <img src="Images/Snacks/wafer-roll.jpg" class="beverage-image" alt="Herbal Tea">
+                    <h3>wafer-roll</h3>
+                    <p>Crispy, creamy, light</p>
                     <div class="price-tag">₹40</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
                 <div class="beverage-card">
-                    <img src="images/protein-shake.jpg" class="beverage-image" alt="Protein Shake">
-                    <h3>Protein Shake</h3>
-                    <p>Vanilla whey</p>
+                    <img src="Images/Snacks/Candy.jpg" class="beverage-image" alt="Protein Shake">
+                    <h3>Candy</h3>
+                    <p>Sweet, colorful, chewy</p>
                     <div class="price-tag">₹75</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
             </div>
         </section>
 
-    <a href="{% url 'cart' %} ">
-        <button class="cart-button">🛒 Cart (<span id="cart-count">0</span>)</button>
-    </a>
+        <button class="cart-button" onclick="window.location.href='6.Cart.html'">🛒 Cart (<span id="cart-count">0</span>)</button>
     </div>
 
     <script>
@@ -225,7 +212,6 @@
             }
         });
 
-        // Cart functionality
         let cartCount = 0;
         const cartElement = document.getElementById('cart-count');
         

@@ -4,6 +4,65 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from PIL import Image
 import os
+import datetime
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=50)
+    
+    def _str_(self):
+        return self.name
+    class Meta :
+        verbose_name_plural = 'Categories'
+
+
+class Product(models.Model):
+    name = models.CharField(max_length=100)
+    price = models.DecimalField(default = 0,decimal_places = 2 ,max_digits=7)
+    category = models.ForeignKey(Category , on_delete = models.CASCADE)
+    image = models.ImageField(upload_to = 'uploads/product/')
+    code_no = models.IntegerField(max_length=10 , default=0)
+   
+    # is the food is available 
+    is_sale = models.BooleanField(default=True)
+    sale_price = models.DecimalField(default = 0,decimal_places = 2 ,max_digits=7)
+    def _str_(self):
+
+        return self.name
+
+
+
+class Customer(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    phone_number = models.CharField(max_length=10)  # Changed to CharField
+    email = models.EmailField(max_length=100)
+    password = models.CharField(max_length=100)  # Fixed from PasswordField to CharField
+
+    def _str_(self):
+        return self.first_name
+
+
+class Order(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)  
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    
+    quantity = models.IntegerField(default=1)  
+    
+    order_id = models.AutoField(primary_key=True)  # Auto-generated order number
+    student_id = models.CharField(max_length=20)  # Use CharField to support alphanumeric reg. no.
+
+    status = models.BooleanField(default=False)
+    date = models.DateField(default=datetime.date.today)
+
+    def _str_(self):
+        return self.product
+
+
+
+
+
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -60,3 +119,9 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
+
+
+
+
+
+    
