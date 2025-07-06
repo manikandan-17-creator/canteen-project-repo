@@ -1,0 +1,833 @@
+:root {
+  --primary: #03356b;
+  --accent: #e9be33;
+  --light: #ffffff;
+  --white: #ffffff;
+  --shadow: 0 8px 20px rgba(4, 4, 4, 0.1);
+  --receipt-bg: #1d1d34;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.7)), url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+  background-size: cover;
+  background-attachment: fixed;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Added Hamburger Menu Styles */
+.hamburger-menu {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.hamburger-menu .bar {
+    width: 25px;
+    height: 3px;
+    background: #2c3e50;
+    margin: 5px 0;
+    transition: 0.4s;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px; /* Hide it initially */
+  width: 150px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  transition: left 0.3s ease;
+  padding-top: 80px; /* Space for logo/header */
+  display: flex;
+  flex-direction: column;  /* ✅ Vertical layout */
+  align-items: flex-start;
+  z-index: 999;
+}
+
+.sidebar.active {
+  left: 0; /* Slide in */
+}
+
+.sidebar a {
+  width: 90%;
+  padding: 15px 25px;
+  text-decoration: none;
+  color: #2c3e50;
+  font-weight: 500;
+  transition: background 0.2s ease;
+  border-bottom: 1px solid #eee;
+}
+
+.sidebar a:hover {
+  background-color: #f7f7f7;
+}
+
+
+
+/* ===========================
+       USER BUTTON & DROPDOWN
+       =========================== */
+    .user-section {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1001;
+    }
+
+    .user-button {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 10px 20px;
+      border-radius: 30px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.3s ease;
+      border: none;
+      font-family: inherit;
+    }
+
+    .user-button img {
+      width: 30px;
+      height: 30px;
+    }
+
+    .user-button .user-info {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+
+    .user-button:hover {
+      transform: scale(1.05);
+    }
+
+    /* Dropdown Menu */
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+      min-width: 200px;
+      max-height: 0;
+      overflow: hidden;
+      overflow-y: auto;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+      margin-top: 5px;
+    }
+
+    .dropdown-menu.active {
+      max-height: 300px;
+      opacity: 1;
+      transform: translateY(0);
+      overflow-y: auto; 
+    }
+
+    .dropdown-item {
+      padding: 15px 20px;
+      border-bottom: 1px solid #f0f0f0;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #333;
+      text-decoration: none;
+    }
+
+    .dropdown-item:hover {
+      background-color: #f8f9fa;
+    }
+
+    .dropdown-item:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-item i {
+      width: 20px;
+      height: 20px;
+      font-size: 16px;
+    }
+
+    .dropdown-header {
+      padding: 15px 20px;
+      background: linear-gradient(135deg, #02156aeb 0%, #1321bc65 100%);
+      color: white;
+      font-weight: 600;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .points-section {
+      background: linear-gradient(135deg, #f9f8f6 0%, #fff6f3 100%);
+      color: #8b4513;
+      font-weight: 600;
+    }
+
+    .logout-section {
+      background: linear-gradient(135deg, #d60e14 0%, #d71734 100%);
+      color: #000000;
+      font-weight: 600;
+    }
+
+    
+
+    /* ===========================
+       PROFILE UPDATE MODAL
+       =========================== */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+      background-color: white;
+      margin: 5% auto;
+      padding: 30px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 500px;
+      max-height: 90vh;     /* ✅ Limit height relative to viewport */
+      overflow-y: auto;     /* ✅ Enable internal scrolling */
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+
+    .modal-header h2 {
+      color: #2c3e50;
+      font-size: 1.5rem;
+    }
+
+    .close {
+      color: #aaa;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    .close:hover {
+      color: #000;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    /* Profile Picture Upload Styles */
+    .profile-pic-section {
+      text-align: center;
+      margin-bottom: 25px;
+      padding: 20px;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      border-radius: 15px;
+    }
+
+    .profile-pic-container {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+
+    .profile-pic-preview {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid #667eea;
+      object-fit: cover;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .profile-pic-preview:hover {
+      transform: scale(1.05);
+    }
+
+    .profile-pic-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(102, 126, 234, 0.8);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      cursor: pointer;
+    }
+
+    .profile-pic-container:hover .profile-pic-overlay {
+      opacity: 1;
+    }
+
+    .profile-pic-overlay i {
+      color: white;
+      font-size: 24px;
+    }
+
+    .profile-pic-input {
+      display: none;
+    }
+
+    .upload-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      margin: 5px;
+    }
+
+    .upload-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .remove-pic-btn {
+      background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      margin: 5px;
+    }
+
+    .remove-pic-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .save-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .save-btn:hover {
+      transform: translateY(-2px);
+    }
+
+header {
+  background: var(--primary);
+  color: white;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+  border-bottom: 5px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+header img {
+  height: 50px;
+  border-radius: 8px;
+}
+
+/* College Logo Styling */
+.college-logo {
+  width: 60px;
+  height: 60px;
+  background: var(--accent);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: var(--primary);
+  font-size: 1.5rem;
+}
+
+header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+nav {
+  background: var(--white);
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-radius: 0 0 10px 10px;
+}
+
+nav a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--accent);
+  background: rgba(233, 190, 51, 0.1);
+  transform: scale(1.05);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding: 2rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: calc(100vh - 200px);
+}
+
+section {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  padding: 2.5rem;
+  backdrop-filter: blur(6px);
+  transition: all 0.5s ease-in-out;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+section.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+h2 {
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: 2rem;
+  text-align: center;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+/* Cart Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+table th {
+  background: var(--primary);
+  color: white;
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+table td {
+  padding: 1rem;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: middle;
+}
+
+table tr:last-child td {
+  border-bottom: none;
+}
+
+table tr:hover {
+  background: rgba(233, 190, 51, 0.05);
+}
+
+.food-img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 12px;
+  vertical-align: middle;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.item-cell {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.qty-input {
+  width: 70px;
+  padding: 8px;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.qty-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.scroll-row {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  flex-wrap: wrap;
+}
+
+.option-btn, .payment-btn {
+  flex-shrink: 0;
+  padding: 14px 28px;
+  border-radius: 25px;
+  background: var(--light);
+  border: 2px solid #e0e0e0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.option-btn:hover, .payment-btn:hover {
+  background: #e3efff;
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.option-btn.active, .payment-btn.active {
+  background: var(--accent);
+  color: white;
+  border-color: var(--primary);
+  transform: scale(1.05);
+}
+
+/* Payment Logo Styling */
+.payment-logo {
+  width: 24px;
+  height: 24px;
+  background: #f0f0f0;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #666;
+  font-weight: bold;
+}
+
+.calendar-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+input[type="date"], input[type="text"] {
+  padding: 14px 20px;
+  font-size: 1rem;
+  border-radius: 12px;
+  border: 2px solid #e0e0e0;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  background: white;
+}
+
+input[type="date"]:focus, input[type="text"]:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(233, 190, 51, 0.2);
+}
+
+.summary-box {
+  background: linear-gradient(135deg, var(--primary), #1a4a8a);
+  color: white;
+  padding: 2rem;
+  border-radius: 15px;
+  margin-top: 2rem;
+  box-shadow: 0 8px 25px rgba(1, 61, 126, 0.3);
+}
+
+.summary-box p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0;
+  font-size: 1.1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.summary-box p:last-of-type {
+  border-bottom: none;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+#coupon {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 12px 16px;
+  border: 2px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.1);
+  color: white;
+  border-radius: 8px;
+}
+
+#coupon::placeholder {
+  color: rgba(255,255,255,0.7);
+}
+
+/* Receipt Styling */
+.receipt {
+  background: linear-gradient(135deg, var(--receipt-bg), #16213e);
+  color: white;
+  padding: 2.5rem;
+  border-radius: 15px;
+  margin-top: 1rem;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+.receipt::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent), #f4d03f);
+  border-radius: 15px 15px 0 0;
+}
+
+.receipt-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px dashed rgba(255,255,255,0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.receipt-header h3 {
+  font-size: 1.5rem;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+/* Receipt College Logo */
+.receipt-college-logo {
+  width: 50px;
+  height: 50px;
+  background: var(--accent);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: var(--primary);
+  font-size: 1.2rem;
+}
+
+.receipt-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  font-size: 1rem;
+}
+
+.receipt-detail:last-of-type {
+  border-bottom: none;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--accent);
+}
+
+.receipt-detail strong {
+  color: #b0c4de;
+}
+
+#qrcode {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+  padding: 1rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.1);
+}
+
+#download-receipt {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 14px 20px;
+  border: none;
+  background: linear-gradient(135deg, var(--accent), #f4d03f);
+  color: var(--primary);
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(233, 190, 51, 0.3);
+}
+
+#download-receipt:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(233, 190, 51, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  main {
+    padding: 1rem;
+    gap: 2rem;
+  }
+  
+  section {
+    padding: 1.5rem;
+  }
+  
+  .scroll-row {
+    gap: 0.5rem;
+  }
+  
+  .option-btn, .payment-btn {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+  
+  table th, table td {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .food-img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .college-logo {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+}
+
+/* ===========================
+       FOOTER
+       =========================== */
+    .footer {
+      background: rgba(44, 62, 80, 0.9);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .social-links img {
+      width: 24px;
+      height: 24px;
+    }
