@@ -1,41 +1,51 @@
+{% load static %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LICET Cafeteria</title>
-
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'accounts/home.css' %}">
+  <link rel="stylesheet" href="{% static 'accounts/home.css' %}"> <!-- Link to your CSS file -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
   <!-- Top Marquee -->
   <div class="top-marquee">
     <marquee behavior="scroll" direction="left" scrollamount="8">
-      Welcome to LICET Cafeteria | Fresh Meals Served Hot | Pickup slots are available from 12:40 PM to 1:05 PM | Slots will be confirmed and assigned only after billing is completed. Thank you!
+        Welcome to LICET Cafeteria | Fresh Meals Served Hot | Pickup slots for Lunch are available from 12:40 PM to 1:05 PM | Slots will be confirmed and assigned only after billing is completed. Thank you!
     </marquee>
-  </div>
-
+    </div>
   <!-- Hamburger Menu -->
-  <div class="hamburger-menu" onclick="toggleSidebar()">
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-  </div>
+    <div class="hamburger-menu" onclick="toggleSidebar()">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+
+    <!-- Navigation of Side Bar-->
+  <nav class="sidebar" id="sidebar">
+  <a href="{% url 'home' %}">Home</a>
+  <a href="{% url 'cart_summary' %}">Cart</a>
+  <a href="{% url 'contact' %}">Contact</a> <!-- or use mailto or a contact section -->
+  </nav>
 
   <!-- Centered Logo and Title -->
   <header class="centered-header">
-    <img src="{% static 'Images/Landing Page/licet_logo.png' %}" alt="LICET Cafeteria Logo" class="logo">
+    <img src="Images/Landing Page/licet_logo.png" alt="LICET Cafeteria Logo" class="logo">
     <h1>LICET Cafeteria</h1>
   </header>
 
-  <!-- Sidebar with Icons -->
-  <nav class="sidebar" id="sidebar">
-
-    <a href="{% url 'update_profile' %}"><img src="{% static 'Images/Landing Page/settings.jpg' %}" alt="Settings"></a>
-  </nav>
-
+  <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <a href="#">Home</a>
+        <a href="#">Menu</a>
+        <a href="#">Cart</a>
+        <a href="#">Contact</a>
+    </nav>
+    
   <!-- Centered Content -->
   <main class="centered-content">
     <!-- Ready-to-Grab Section -->
@@ -43,9 +53,9 @@
       <h2>Ready-to-Grab</h2>
       <p>Grab pre-cooked meals ready to pick.</p>
       <div class="items">
-        <a href="#"><img src="{% static 'Images/Landing Page/biryani.jpg' %}" alt="Biryani"></a>
-        <a href="#"><img src="{% static 'Images/Landing Page/idli.jpg' %}" alt="Idli"></a>
-        <a href="#"><img src="{% static 'Images/Landing Page/south-indian.jpg' %}" alt="South Indian Meals"></a>
+        <a href="#"><img src="Images/Landing Page/biryani.jpg" alt="Biryani" loading="lazy"></a>
+        <a href="#"><img src="Images/Landing Page/idli.jpg" alt="Idli" loading="lazy"></a>
+        <a href="#"><img src="Images/Landing Page/south-indian.jpg" alt="South Indian Meals" loading="lazy"></a>
       </div>
       <a href="{% url 'ready_to_grab' %}" class="button grab-go">Grab & Go</a>
     </section>
@@ -55,9 +65,9 @@
       <h2>Cooked-to-Serve</h2>
       <p>Pick up hot & fresh, right on time.</p>
       <div class="items">
-        <a href="#"><img src="{% static 'Images/Landing Page/chinese.jpg' %}" alt="Chinese"></a>
-        <a href="#"><img src="{% static 'Images/Landing Page/Parotta.jpg' %}" alt="Parotta"></a>
-        <a href="#"><img src="{% static 'Images/Landing Page/dosa.jpg' %}" alt="Dosa"></a>
+        <a href="#"><img src="Images/Landing Page/chinese.jpg" alt="Chinese" loading="lazy"></a>
+        <a href="#"><img src="Images/Landing Page/Parotta.jpg" alt="Parotta" loading="lazy"></a>
+        <a href="#"><img src="Images/Landing Page/dosa.jpg" alt="Dosa" loading="lazy"></a>
       </div>
       <a href="{% url 'cooked_to_serve' %}" class="button fresh-spot">Fresh on Spot</a>
     </section>
@@ -67,9 +77,9 @@
       <h2>Beverages</h2>
       <p>Quench your thirst with refreshing drinks.</p>
       <div class="items">
-        <a href="#"><img src="{% static 'Images/Landing Page/coffee.jpg' %}" alt="Coffee"></a>
-        <a href="#"><img src="{% static 'Images/Landing Page/juice.jpg' %}" alt="Juice"></a>
-        <a href="#"><img src="{% static 'Images/Landing Page/soda.jpg' %}" alt="Soda"></a>
+        <a href="#"><img src="Images/Landing Page/coffee.jpg" alt="Coffee" loading="lazy"></a>
+        <a href="#"><img src="Images/Landing Page/juice.jpg" alt="Juice" loading="lazy"></a>
+        <a href="#"><img src="Images/Landing Page/soda.jpg" alt="Soda" loading="lazy"></a>
       </div>
       <a href="{% url 'beverages' %}" class="button beverages-btn">Order Now</a>
     </section>
@@ -79,9 +89,9 @@
       <h2>Snacks</h2>
       <p>Enjoy quick bites and snacks.</p>
       <div class="items">
-        <a href="#"><img src="{% static 'Images/Landing Page/samosa.jpg' %}" alt="Samosa"></a>
-        <a href="#"><img src="{% static 'Images/Landing Page/Bread-Omellet.jpg' %}" alt="Bread-Omellet"></a>
-        <a href="#"><img src="{% static 'Images/Landing Page/chips.jpg' %}" alt="Chips"></a>
+        <a href="#"><img src="Images/Landing Page/samosa.jpg" alt="Samosa" loading="lazy"></a>
+        <a href="#"><img src="Images/Landing Page/Bread-Omellet.jpg" alt="Bread-Omellet" loading="lazy"></a>
+        <a href="#"><img src="Images/Landing Page/chips.jpg" alt="Chips" loading="lazy"></a>
       </div>
       <a href="{% url 'snacks' %}" class="button snacks-btn">Order Now</a>
     </section>
@@ -91,58 +101,283 @@
       <h2>Side Dishes</h2>
       <p>Complement your meal with delicious sides.</p>
       <div class="items">
-        <a href="#"><img src="{% static 'Images/Landing Page/fried.jpg' %}" alt="Fried"></a>
-        <a href="#"><img src="{% static 'Images/Landing Page/Poriyal.jpg' %}" alt="Poriyal"></a>
-        <a href="#"><img src="{% static 'Images/Landing Page/Side-Dips.jpg' %}" alt="Side-Dips"></a>
+        <a href="#"><img src="Images/Landing Page/fried.jpg" alt="Fried" loading="lazy"></a>
+        <a href="#"><img src="Images/Landing Page/Poriyal.jpg" alt="Poriyal" loading="lazy"></a>
+        <a href="#"><img src="Images/Landing Page/Side-Dips.jpg" alt="Side-Dips" loading="lazy"></a>
       </div>
-      <a href="{% url 'sidedish' %}" class="button side-dishes-btn">Order Now</a>
+      <a href="{% url 'sidedish' %}"  class="button side-dishes-btn">Order Now</a>
     </section>
   </main>
 
-  <!-- User Name Button -->
-  {% if user.is_authenticated %}
-  <ul class="user-dropdown">
-    <li class="user-button" onclick="toggleUserMenu()">
-      {% if user.profile.profile_picture and user.profile.profile_picture.url != 'profile_pics/default.jpg' %}
-        <img src="{{ user.profile.profile_picture.url }}" alt="User Profile">
-      {% else %}
-        <img src="{% static 'Images/Landing Page/User-Logo.png' %}" alt="User Profile">
-      {% endif %}
-      <span class="user-info">{{ user.username }}</span>
-    </li>
-     <li> <a href="{% url 'update_profile' %}">Update Profile</a> </li>
-     <li> <a href="{% url 'logout' %}">Logout</a> </li>
-  </ul>
-  {% endif %}
+  <!-- User Section with Dropdown -->
+  <div class="user-section">
+    <button class="user-button" onclick="toggleDropdown()">
+      <img src="Images/Landing Page/User-Logo.png" alt="User Profile">
+      <span class="user-info" id="userName">User Name</span>
+      <i class="fas fa-chevron-down" style="margin-left: 5px; font-size: 12px;"></i>
+    </button>
+    
+    <!-- Dropdown Menu -->
+    <div class="dropdown-menu" id="dropdownMenu">
+      <div class="dropdown-header">
+        <div>Welcome back!</div>
+      </div>
+      
+      <a href="#" class="dropdown-item" onclick="openProfileModal()">
+        <i class="fas fa-user-edit"></i>
+        <span>Update Profile</span>
+      </a>
+      
+      <div class="dropdown-item points-section">
+        <i class="fas fa-coins"></i>
+        <span>Points: <strong id="userPoints">250</strong></span>
+      </div>
+      
+      <a href= "{% url 'logout' %}" class="dropdown-item logout-section" >
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Logout</span>
+      </a>
+    </div>
+  </div>
 
+  <!-- Profile Update Modal -->
+  <div id="profileModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Update Profile</h2>
+        <button class="close" onclick="closeProfileModal()">&times;</button>
+      </div>
+      
+      <form id="profileForm">
+        <!-- Profile Picture Section -->
+        <div class="profile-pic-section">
+          <div class="profile-pic-container">
+            <img id="profilePicPreview" src="Images/Landing Page/User-Logo.png" alt="Profile Picture" class="profile-pic-preview">
+            <div class="profile-pic-overlay" onclick="document.getElementById('profilePicInput').click()">
+              <i class="fas fa-camera"></i>
+            </div>
+          </div>
+          <div>
+            <input type="file" id="profilePicInput" class="profile-pic-input" accept="image/*" onchange="handleProfilePicChange(event)">
+            <button type="button" class="upload-btn" onclick="document.getElementById('profilePicInput').click()">
+              <i class="fas fa-upload"></i> Choose Photo
+            </button>
+            <button type="button" class="remove-pic-btn" onclick="removeProfilePic()">
+              <i class="fas fa-trash"></i> Remove
+            </button>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" name="fullName" placeholder="Enter your full name">
+        </div>
+        
+        <div class="form-group">
+          <label for="yearOfStudy">Year of Study</label>
+          <select id="yearOfStudy" name="yearOfStudy">
+            <option value="">Select Year</option>
+            <option value="1st Year">1st Year</option>
+            <option value="2nd Year">2nd Year</option>
+            <option value="3rd Year">3rd Year</option>
+            <option value="4th Year">4th Year</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="batch">Batch</label>
+          <input type="text" id="batch" name="batch" placeholder="e.g., 2021-2025">
+        </div>
+        
+        <div class="form-group">
+          <label for="department">Department</label>
+          <select id="department" name="department">
+            <option value="">Select Department</option>
+            <option value="Computer Science">Computer Science</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Mechanical">Mechanical</option>
+            <option value="Civil">Civil</option>
+            <option value="Electrical">Electrical</option>
+            <option value="Information Technology">Information Technology</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="dateOfBirth">Date of Birth</label>
+          <input type="date" id="dateOfBirth" name="dateOfBirth">
+        </div>
+        
+        <button type="button" class="save-btn" onclick="saveProfile()">Save Changes</button>
+      </form>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer class="footer">
     <p>&copy; 2025 LICET Cafeteria. All rights reserved.</p>
     <div class="social-links">
-      <a href="#"><img src="{% static 'Images/Landing Page/facebook.jpg' %}" alt="Facebook"></a>
-      <a href="#"><img src="{% static 'Images/Landing Page/instagram.jpg' %}" alt="Instagram"></a>
-      <a href="#"><img src="{% static 'Images/Landing Page/X.png' %}" alt="Twitter"></a>
+      <a href="#" aria-label="Facebook"><img src="Images/Landing Page/facebook.jpg" alt="Facebook"></a>
+      <a href="#" aria-label="Instagram"><img src="Images/Landing Page/instagram.jpg" alt="Instagram"></a>
+      <a href="#" aria-label="Twitter"><img src="Images/Landing Page/X.png" alt="Twitter"></a>
     </div>
   </footer>
 
-  <!-- JavaScript for Hamburger Menu -->
+  <!-- JavaScript -->
   <script>
+    // Hamburger Menu Toggle
     function toggleSidebar() {
       const sidebar = document.getElementById('sidebar');
       sidebar.classList.toggle('active');
     }
 
-  function toggleUserMenu() {
-    document.getElementById('userDropdown').classList.toggle('show');
+    // User Dropdown Toggle
+    function toggleDropdown() {
+      const dropdown = document.getElementById('dropdownMenu');
+      dropdown.classList.toggle('active');
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+      const userSection = document.querySelector('.user-section');
+      const dropdown = document.getElementById('dropdownMenu');
+      
+      if (!userSection.contains(event.target)) {
+        dropdown.classList.remove('active');
+      }
+    });
+
+    // Profile Modal Functions
+    function openProfileModal() {
+      document.getElementById('profileModal').style.display = 'block';
+      document.getElementById('dropdownMenu').classList.remove('active');
+      
+      // Load existing data if available
+      loadProfileData();
+    }
+
+    function closeProfileModal() {
+      document.getElementById('profileModal').style.display = 'none';
+    }
+
+    function loadProfileData() {
+  const userData = JSON.parse(localStorage.getItem('userData')) || {};
+
+  document.getElementById('fullName').value = userData.fullName || '';
+  document.getElementById('yearOfStudy').value = userData.yearOfStudy || '';
+  document.getElementById('batch').value = userData.batch || '';
+  document.getElementById('department').value = userData.department || '';
+  document.getElementById('dateOfBirth').value = userData.dateOfBirth || '';
+
+  // Load profile picture
+  if (userData.profilePic) {
+    document.getElementById('profilePicPreview').src = userData.profilePic;
+    document.querySelector('.user-button img').src = userData.profilePic;
   }
 
-  
+  if (userData.fullName) {
+    document.getElementById('userName').textContent = userData.fullName;
+  }
+}
+
+
+    function handleProfilePicChange(event) {
+      const file = event.target.files[0];
+      if (file) {
+        // Validate file type
+        if (!file.type.startsWith('image/')) {
+          alert('Please select a valid image file.');
+          return;
+        }
+        
+        // Validate file size (max 5MB)
+        if (file.size > 5 * 1024 * 1024) {
+          alert('Please select an image smaller than 5MB.');
+          return;
+        }
+        
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const imageDataUrl = e.target.result;
+          document.getElementById('profilePicPreview').src = imageDataUrl;
+          
+          // Store the image data temporarily
+          window.tempProfilePic = imageDataUrl;
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function removeProfilePic() {
+      // Reset to default profile picture
+      const defaultPic = 'Images/Landing Page/User-Logo.png';
+      document.getElementById('profilePicPreview').src = defaultPic;
+      document.getElementById('profilePicInput').value = '';
+      window.tempProfilePic = null;
+    }
+
+    function saveProfile() {
+      const formData = {
+        fullName: document.getElementById('fullName').value,
+        yearOfStudy: document.getElementById('yearOfStudy').value,
+        batch: document.getElementById('batch').value,
+        department: document.getElementById('department').value,
+        dateOfBirth: document.getElementById('dateOfBirth').value,
+        profilePic: window.tempProfilePic || window.userData?.profilePic || 'Images/Landing Page/User-Logo.png'
+      };
+
+      // Save to memory (LocalStorage)
+      localStorage.setItem('userData', JSON.stringify(formData));
+
+      
+      // Update the display name
+      if (formData.fullName) {
+        document.getElementById('userName').textContent = formData.fullName;
+      }
+
+      // Update the user button profile picture
+      if (formData.profilePic) {
+        document.querySelector('.user-button img').src = formData.profilePic;
+      }
+
+      // Clear temporary profile pic data
+      window.tempProfilePic = null;
+
+      // Show success message
+      alert('Profile updated successfully!');
+      closeProfileModal();
+    }
+
+    function logout() {
+      const confirmLogout = confirm('Are you sure you want to logout?');
+      if (confirmLogout) {
+        // Clear user data
+        window.userData = {};
+        window.tempProfilePic = null;
+        
+        // In a real app, you would redirect to login page
+        alert('You have been logged out successfully!');
+        
+        // Reset display
+        document.getElementById('userName').textContent = 'User Name';
+        document.querySelector('.user-button img').src = 'Images/Landing Page/User-Logo.png';
+        document.getElementById('dropdownMenu').classList.remove('active');
+      }
+    }
+
+    // Close modal when clicking outside of it
+    window.onclick = function(event) {
+      const modal = document.getElementById('profileModal');
+      if (event.target === modal) {
+        closeProfileModal();
+      }
+    }
+
+    // Initialize user data storage
+    window.userData = window.userData || {};
+    document.addEventListener('DOMContentLoaded', () => {
+  loadProfileData();
+});
 
   </script>
 </body>
 </html>
-
-
-
-

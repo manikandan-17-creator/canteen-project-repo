@@ -1,581 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  {%load static%}
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LICET Canteen Cart</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="6.Cart.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-  <style>
-    :root {
-      --primary: #03356b;
-      --accent: #e9be33;
-      --light: #ffffff;
-      --white: #ffffff;
-      --shadow: 0 8px 20px rgba(4, 4, 4, 0.1);
-      --receipt-bg: #1d1d34;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    body {
-      background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.7)), url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-      background-size: cover;
-      background-attachment: fixed;
-      overflow-x: hidden;
-      min-height: 100vh;
-    }
-
-    /* Added Hamburger Menu Styles */
-    .hamburger-menu {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      cursor: pointer;
-      z-index: 1000;
-      background: rgba(255, 255, 255, 0.9);
-      padding: 10px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .hamburger-menu .bar {
-      width: 25px;
-      height: 3px;
-      background: #2c3e50;
-      margin: 5px 0;
-      transition: 0.4s;
-    }
-   
-    .sidebar {
-      position: fixed;
-      top: 0;
-      left: -250px;
-      width: 250px;
-      height: 100%;
-      background: rgba(255,255,255,0.95);
-      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-      transition: 0.3s;
-      padding-top: 60px;
-    }
-
-    .sidebar.active {
-      left: 0;
-    }
-
-    .sidebar a {
-      display: block;
-      padding: 15px 25px;
-      text-decoration: none;
-      color: #2c3e50;
-      font-weight: 500;
-      transition: 0.2s;
-    }
-
-    .sidebar a:hover {
-      background: rgba(0,0,0,0.05);
-    }
-
-    /* Add this to your existing CSS */
-    .user-button {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      z-index: 1000;
-      background: rgba(255, 255, 255, 0.9);
-      padding: 8px 15px;
-      border-radius: 25px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .user-button img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #fff;
-    }
-
-    .user-button:hover {
-      background: rgba(255, 255, 255, 1);
-      transform: translateY(-2px);
-    }
-
-    .user-info {
-      font-weight: 500;
-      color: #2c3e50;
-      font-size: 0.9rem;
-    }
-
-    /* Optional: Add media query for mobile responsiveness */
-    @media (max-width: 768px) {
-      .user-button {
-        padding: 6px 12px;
-      }
-      .user-info {
-        display: none; /* Hide text on mobile */
-      }
-      .user-button img {
-        width: 35px;
-        height: 35px;
-      }
-    }
-
-    header {
-      background: var(--primary);
-      color: white;
-      padding: 1.5rem 2rem;
-      text-align: center;
-      box-shadow: var(--shadow);
-      border-bottom: 5px solid var(--accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-    }
-
-    header img {
-      height: 50px;
-      border-radius: 8px;
-    }
-
-    /* College Logo Styling */
-    .college-logo {
-      width: 60px;
-      height: 60px;
-      background: var(--accent);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      color: var(--primary);
-      font-size: 1.5rem;
-    }
-
-    header h1 {
-      font-size: 2rem;
-      font-weight: 700;
-    }
-
-    nav {
-      background: var(--white);
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      padding: 1rem 0;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      border-radius: 0 0 10px 10px;
-    }
-
-    nav a {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 600;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-    }
-
-    nav a:hover {
-      color: var(--accent);
-      background: rgba(233, 190, 51, 0.1);
-      transform: scale(1.05);
-    }
-
-    main {
-      display: flex;
-      flex-direction: column;
-      gap: 3rem;
-      padding: 2rem 1.5rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      min-height: calc(100vh - 200px);
-    }
-
-    section {
-      background: rgba(255, 255, 255, 0.96);
-      border-radius: 20px;
-      box-shadow: var(--shadow);
-      padding: 2.5rem;
-      backdrop-filter: blur(6px);
-      transition: all 0.5s ease-in-out;
-      opacity: 0;
-      transform: translateY(30px);
-    }
-
-    section.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    h2 {
-      font-size: 2rem;
-      color: var(--primary);
-      margin-bottom: 2rem;
-      text-align: center;
-      letter-spacing: 0.5px;
-      position: relative;
-    }
-
-    h2::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 3px;
-      background: var(--accent);
-      border-radius: 2px;
-    }
-
-    /* Cart Table Styling */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 2rem;
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    }
-
-    table th {
-      background: var(--primary);
-      color: white;
-      padding: 1rem;
-      text-align: left;
-      font-weight: 600;
-      font-size: 1rem;
-    }
-
-    table td {
-      padding: 1rem;
-      border-bottom: 1px solid #f0f0f0;
-      vertical-align: middle;
-    }
-
-    table tr:last-child td {
-      border-bottom: none;
-    }
-
-    table tr:hover {
-      background: rgba(233, 190, 51, 0.05);
-    }
-
-    .food-img {
-      width: 50px;
-      height: 50px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-right: 12px;
-      vertical-align: middle;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-
-    .item-cell {
-      display: flex;
-      align-items: center;
-      font-weight: 500;
-    }
-
-    .qty-input {
-      width: 70px;
-      padding: 8px;
-      border: 2px solid #e0e0e0;
-      border-radius: 6px;
-      text-align: center;
-      font-size: 1rem;
-      transition: border-color 0.3s;
-    }
-
-    .qty-input:focus {
-      outline: none;
-      border-color: var(--accent);
-    }
-
-    .scroll-row {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      padding: 1rem 0;
-      flex-wrap: wrap;
-    }
-
-    .option-btn, .payment-btn {
-      flex-shrink: 0;
-      padding: 14px 28px;
-      border-radius: 25px;
-      background: var(--light);
-      border: 2px solid #e0e0e0;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-weight: 500;
-      font-size: 1rem;
-      color: var(--primary);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .option-btn:hover, .payment-btn:hover {
-      background: #e3efff;
-      border-color: var(--primary);
-      transform: translateY(-2px);
-    }
-
-    .option-btn.active, .payment-btn.active {
-      background: var(--accent);
-      color: white;
-      border-color: var(--primary);
-      transform: scale(1.05);
-    }
-
-    /* Payment Logo Styling */
-    .payment-logo {
-      width: 24px;
-      height: 24px;
-      background: #f0f0f0;
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 10px;
-      color: #666;
-      font-weight: bold;
-    }
-
-    .calendar-container {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 2rem;
-    }
-
-    input[type="date"], input[type="text"] {
-      padding: 14px 20px;
-      font-size: 1rem;
-      border-radius: 12px;
-      border: 2px solid #e0e0e0;
-      box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
-      transition: all 0.3s ease;
-      background: white;
-    }
-
-    input[type="date"]:focus, input[type="text"]:focus {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(233, 190, 51, 0.2);
-    }
-
-    .summary-box {
-      background: linear-gradient(135deg, var(--primary), #1a4a8a);
-      color: white;
-      padding: 2rem;
-      border-radius: 15px;
-      margin-top: 2rem;
-      box-shadow: 0 8px 25px rgba(1, 61, 126, 0.3);
-    }
-
-    .summary-box p {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 1rem 0;
-      font-size: 1.1rem;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-    }
-
-    .summary-box p:last-of-type {
-      border-bottom: none;
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--accent);
-    }
-
-    #coupon {
-      width: 100%;
-      margin-top: 1rem;
-      padding: 12px 16px;
-      border: 2px solid rgba(255,255,255,0.3);
-      background: rgba(255,255,255,0.1);
-      color: white;
-      border-radius: 8px;
-    }
-
-    #coupon::placeholder {
-      color: rgba(255,255,255,0.7);
-    }
-
-    /* Receipt Styling */
-    .receipt {
-      background: linear-gradient(135deg, var(--receipt-bg), #16213e);
-      color: white;
-      padding: 2.5rem;
-      border-radius: 15px;
-      margin-top: 1rem;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
-      position: relative;
-    }
-
-    .receipt::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--accent), #f4d03f);
-      border-radius: 15px 15px 0 0;
-    }
-
-    .receipt-header {
-      text-align: center;
-      margin-bottom: 2rem;
-      padding-bottom: 1rem;
-      border-bottom: 2px dashed rgba(255,255,255,0.3);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .receipt-header h3 {
-      font-size: 1.5rem;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-    }
-
-    /* Receipt College Logo */
-    .receipt-college-logo {
-      width: 50px;
-      height: 50px;
-      background: var(--accent);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      color: var(--primary);
-      font-size: 1.2rem;
-    }
-
-    .receipt-detail {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 1rem 0;
-      padding: 0.8rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      font-size: 1rem;
-    }
-
-    .receipt-detail:last-of-type {
-      border-bottom: none;
-      font-weight: 700;
-      font-size: 1.2rem;
-      color: var(--accent);
-    }
-
-    .receipt-detail strong {
-      color: #b0c4de;
-    }
-
-    #qrcode {
-      display: flex;
-      justify-content: center;
-      margin: 2rem 0;
-      padding: 1rem;
-      background: white;
-      border-radius: 12px;
-      box-shadow: inset 0 2px 8px rgba(0,0,0,0.1);
-    }
-
-    #download-receipt {
-      width: 100%;
-      margin-top: 1.5rem;
-      padding: 14px 20px;
-      border: none;
-      background: linear-gradient(135deg, var(--accent), #f4d03f);
-      color: var(--primary);
-      border-radius: 12px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(233, 190, 51, 0.3);
-    }
-
-    #download-receipt:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(233, 190, 51, 0.4);
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      main {
-        padding: 1rem;
-        gap: 2rem;
-      }
-      
-      section {
-        padding: 1.5rem;
-      }
-      
-      .scroll-row {
-        gap: 0.5rem;
-      }
-      
-      .option-btn, .payment-btn {
-        padding: 10px 16px;
-        font-size: 0.9rem;
-      }
-      
-      table th, table td {
-        padding: 0.5rem;
-        font-size: 0.9rem;
-      }
-      
-      .food-img {
-        width: 40px;
-        height: 40px;
-      }
-
-      .college-logo {
-        width: 50px;
-        height: 50px;
-        font-size: 1.2rem;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="{% static 'accounts/cart_summary.css' %}" >
 </head>
 <body>
+
+  <nav class="sidebar" id="sidebar">
+  <a href="{% url 'home' %}">Home</a>
+  <a href="{% url 'cart_summary' %}">Cart</a>
+  <a href="{% url 'contact' %}">Contact</a> <!-- or use mailto or a contact section -->
+  </nav>
+
   <!-- Hamburger Menu -->
-  <div class="hamburger-menu" onclick="toggleSidebar()">
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
+    <div class="hamburger-menu" onclick="toggleSidebar()">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+
+  <!-- User Section with Dropdown -->
+  <div class="user-section"> 
+    <button class="user-button" onclick="toggleDropdown()">
+      <img src="Images/Landing Page/User-Logo.png" alt="User Profile">
+      <span class="user-info" id="userName">User Name</span>
+      <i class="fas fa-chevron-down" style="margin-left: 5px; font-size: 12px;"></i>
+    </button>
+    
+    <!-- Dropdown Menu -->
+    <div class="dropdown-menu" id="dropdownMenu">
+      <div class="dropdown-header">
+        <div>Welcome back!</div>
+      </div>
+      
+      <a href="#" class="dropdown-item" onclick="openProfileModal()">
+        <i class="fas fa-user-edit"></i>
+        <span>Update Profile</span>
+      </a>
+      
+      <div class="dropdown-item points-section">
+        <i class="fas fa-coins"></i>
+        <span>Points: <strong id="userPoints">250</strong></span>
+      </div>
+      
+      <a href="{% url 'login' %}" class="dropdown-item logout-section">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Logout</span>
+      </a>
+    </div>
   </div>
 
-  <!-- User Button -->
-  <div class="user-button">
-    <img src="User-logo.jpg" alt="User Profile">
-    <span class="user-info">User Name</span>
+  <!-- Profile Update Modal -->
+  <div id="profileModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Update Profile</h2>
+        <button class="close" onclick="closeProfileModal()">&times;</button>
+      </div>
+      
+      <form id="profileForm">
+        <!-- Profile Picture Section -->
+        <div class="profile-pic-section">
+          <div class="profile-pic-container">
+            <img id="profilePicPreview" src="Images/Landing Page/User-Logo.png" alt="Profile Picture" class="profile-pic-preview">
+            <div class="profile-pic-overlay" onclick="document.getElementById('profilePicInput').click()">
+              <i class="fas fa-camera"></i>
+            </div>
+          </div>
+          <div>
+            <input type="file" id="profilePicInput" class="profile-pic-input" accept="image/*" onchange="handleProfilePicChange(event)">
+            <button type="button" class="upload-btn" onclick="document.getElementById('profilePicInput').click()">
+              <i class="fas fa-upload"></i> Choose Photo
+            </button>
+            <button type="button" class="remove-pic-btn" onclick="removeProfilePic()">
+              <i class="fas fa-trash"></i> Remove
+            </button>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" name="fullName" placeholder="Enter your full name">
+        </div>
+        
+        <div class="form-group">
+          <label for="yearOfStudy">Year of Study</label>
+          <select id="yearOfStudy" name="yearOfStudy">
+            <option value="">Select Year</option>
+            <option value="1st Year">1st Year</option>
+            <option value="2nd Year">2nd Year</option>
+            <option value="3rd Year">3rd Year</option>
+            <option value="4th Year">4th Year</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="batch">Batch</label>
+          <input type="text" id="batch" name="batch" placeholder="e.g., 2021-2025">
+        </div>
+        
+        <div class="form-group">
+          <label for="department">Department</label>
+          <select id="department" name="department">
+            <option value="">Select Department</option>
+            <option value="Computer Science">Computer Science</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Mechanical">Mechanical</option>
+            <option value="Civil">Civil</option>
+            <option value="Electrical">Electrical</option>
+            <option value="Information Technology">Information Technology</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="dateOfBirth">Date of Birth</label>
+          <input type="date" id="dateOfBirth" name="dateOfBirth">
+        </div>
+        
+        <button type="button" class="save-btn" onclick="saveProfile()">Save Changes</button>
+      </form>
+    </div>
   </div>
 
   <!-- Sidebar Navigation -->
@@ -588,7 +139,7 @@
 
   <header>
     <!-- College Logo Placeholder - Replace with your actual logo -->
-    <img src="licet_logo.png" alt="LICET Logo" class="college-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <img src="Images/Cart/licet_logo.png" alt="LICET Logo" class="college-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
     <div class="college-logo" style="display: none;">L</div>
     <h1>LICET Cafeteria</h1>
   </header>
@@ -650,22 +201,22 @@
       <div class="scroll-row">
         <!-- Payment buttons with logo placeholders -->
         <button class="payment-btn active">
-          <img src="google-pay-logo.png" alt="Google Pay" class="payment-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <img src="Images/Cart/google-pay-logo.png" alt="Google Pay" class="payment-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <div class="payment-logo" style="display: none;">GP</div>
           Google Pay
         </button>
         <button class="payment-btn">
-          <img src="phonepe-logo.png" alt="PhonePe" class="payment-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <img src="Images/Cart/phonepe-logo.png" alt="PhonePe" class="payment-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <div class="payment-logo" style="display: none;">PP</div>
           PhonePe
         </button>
         <button class="payment-btn">
-          <img src="paytm-logo.png" alt="Paytm" class="payment-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <img src="Images/Cart/paytm-logo.png" alt="Paytm" class="payment-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <div class="payment-logo" style="display: none;">PTM</div>
           Paytm
         </button>
         <button class="payment-btn">
-          <img src="bhim-logo.png" alt="BHIM" class="payment-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <img src="Images/Cart/bhim-logo.png" alt="BHIM" class="payment-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <div class="payment-logo" style="display: none;">BHIM</div>
           BHIM
         </button>
@@ -677,7 +228,7 @@
       <div class="receipt" id="receipt-content">
         <div class="receipt-header">
           <!-- College Logo in Receipt -->
-          <img src="licet_logo.png" alt="LICET Logo" class="receipt-college-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <img src="Images/Cart/licet_logo.png" alt="LICET Logo" class="receipt-college-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <div class="receipt-college-logo" style="display: none;">L</div>
           <h3>LICET Cafeteria</h3>
           <p>Order Confirmation</p>
@@ -713,6 +264,15 @@
       </div>
     </section>
   </main>
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 LICET Cafeteria. All rights reserved.</p>
+    <div class="social-links">
+      <a href="#" aria-label="Facebook"><img src="Images/Landing Page/facebook.jpg" alt="Facebook"></a>
+      <a href="#" aria-label="Instagram"><img src="Images/Landing Page/instagram.jpg" alt="Instagram"></a>
+      <a href="#" aria-label="Twitter"><img src="Images/Landing Page/X.png" alt="Twitter"></a>
+    </div>
+  </footer>
 
   <script>
     // Toggle Sidebar
@@ -731,10 +291,8 @@
     });
 
     // Sample cart items
-    const items = [
-      { name: 'Schezwan Fried Rice', price: 120, qty: 1, img: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=50&h=50&fit=crop&crop=center' },
-      { name: 'Chicken 65', price: 80, qty: 1, img: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=50&h=50&fit=crop&crop=center' }
-    ];
+    let items = JSON.parse(localStorage.getItem('cartItems')) || [];
+
 
     let selectedTime = '12:45 PM';
     let selectedType = 'Dine In';
@@ -918,6 +476,164 @@
 
     // Generate initial QR code
     setTimeout(generateQRCode, 500);
+
+    // Hamburger Menu Toggle
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('active');
+    }
+
+    // User Dropdown Toggle
+    function toggleDropdown() {
+      const dropdown = document.getElementById('dropdownMenu');
+      dropdown.classList.toggle('active');
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+      const userSection = document.querySelector('.user-section');
+      const dropdown = document.getElementById('dropdownMenu');
+      
+      if (!userSection.contains(event.target)) {
+        dropdown.classList.remove('active');
+      }
+    });
+
+    // Profile Modal Functions
+    function openProfileModal() {
+      document.getElementById('profileModal').style.display = 'block';
+      document.getElementById('dropdownMenu').classList.remove('active');
+      
+      // Load existing data if available
+      loadProfileData();
+    }
+
+    function closeProfileModal() {
+      document.getElementById('profileModal').style.display = 'none';
+    }
+
+    function loadProfileData() {
+  const userData = JSON.parse(localStorage.getItem('userData')) || {};
+
+  document.getElementById('fullName').value = userData.fullName || '';
+  document.getElementById('yearOfStudy').value = userData.yearOfStudy || '';
+  document.getElementById('batch').value = userData.batch || '';
+  document.getElementById('department').value = userData.department || '';
+  document.getElementById('dateOfBirth').value = userData.dateOfBirth || '';
+
+  // Load profile picture
+  if (userData.profilePic) {
+    document.getElementById('profilePicPreview').src = userData.profilePic;
+    document.querySelector('.user-button img').src = userData.profilePic;
+  }
+
+  if (userData.fullName) {
+    document.getElementById('userName').textContent = userData.fullName;
+  }
+}
+
+
+    function handleProfilePicChange(event) {
+      const file = event.target.files[0];
+      if (file) {
+        // Validate file type
+        if (!file.type.startsWith('image/')) {
+          alert('Please select a valid image file.');
+          return;
+        }
+        
+        // Validate file size (max 5MB)
+        if (file.size > 5 * 1024 * 1024) {
+          alert('Please select an image smaller than 5MB.');
+          return;
+        }
+        
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const imageDataUrl = e.target.result;
+          document.getElementById('profilePicPreview').src = imageDataUrl;
+          
+          // Store the image data temporarily
+          window.tempProfilePic = imageDataUrl;
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function removeProfilePic() {
+      // Reset to default profile picture
+      const defaultPic = 'Images/Landing Page/User-Logo.png';
+      document.getElementById('profilePicPreview').src = defaultPic;
+      document.getElementById('profilePicInput').value = '';
+      window.tempProfilePic = null;
+    }
+
+    function saveProfile() {
+      const formData = {
+        fullName: document.getElementById('fullName').value,
+        yearOfStudy: document.getElementById('yearOfStudy').value,
+        batch: document.getElementById('batch').value,
+        department: document.getElementById('department').value,
+        dateOfBirth: document.getElementById('dateOfBirth').value,
+        profilePic: window.tempProfilePic || window.userData?.profilePic || 'Images/Landing Page/User-Logo.png'
+      };
+
+      // Save to memory (in a real app, this would be sent to a server)
+      localStorage.setItem('userData', JSON.stringify(formData));
+
+      
+      // Update the display name
+      if (formData.fullName) {
+        document.getElementById('userName').textContent = formData.fullName;
+      }
+
+      // Update the user button profile picture
+      if (formData.profilePic) {
+        document.querySelector('.user-button img').src = formData.profilePic;
+      }
+
+      // Clear temporary profile pic data
+      window.tempProfilePic = null;
+
+      // Show success message
+      alert('Profile updated successfully!');
+      closeProfileModal();
+    }
+
+    function logout() {
+      const confirmLogout = confirm('Are you sure you want to logout?');
+      if (confirmLogout) {
+        // Clear user data
+        window.userData = {};
+        window.tempProfilePic = null;
+        
+        // In a real app, you would redirect to login page
+        alert('You have been logged out successfully!');
+        
+        // Reset display
+        document.getElementById('userName').textContent = 'User Name';
+        document.querySelector('.user-button img').src = 'Images/Landing Page/User-Logo.png';
+        document.getElementById('dropdownMenu').classList.remove('active');
+      }
+    }
+
+    // Close modal when clicking outside of it
+    window.onclick = function(event) {
+      const modal = document.getElementById('profileModal');
+      if (event.target === modal) {
+        closeProfileModal();
+      }
+    }
+
+    // Initialize user data storage
+    window.userData = window.userData || {};
+    document.addEventListener('DOMContentLoaded', () => {
+  loadProfileData();
+});
+
+localStorage.removeItem('cartItems');
+
+
   </script>
 </body>
 </html>

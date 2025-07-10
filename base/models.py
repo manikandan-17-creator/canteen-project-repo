@@ -10,7 +10,7 @@ import datetime
 class Category(models.Model):
     name = models.CharField(max_length=50)
     
-    def _str_(self):
+    def __str__(self):
         return self.name
     class Meta :
         verbose_name_plural = 'Categories'
@@ -18,17 +18,26 @@ class Category(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=100)
-    price = models.DecimalField(default = 0,decimal_places = 2 ,max_digits=7)
+    price = models.DecimalField(default = ' ',decimal_places = 2 ,max_digits=7)
     category = models.ForeignKey(Category , on_delete = models.CASCADE)
     image = models.ImageField(upload_to = 'uploads/product/')
-    code_no = models.IntegerField(max_length=10 , default=0)
+    code_no = models.IntegerField(default=' ')
    
     # is the food is available 
     is_sale = models.BooleanField(default=True)
-    sale_price = models.DecimalField(default = 0,decimal_places = 2 ,max_digits=7)
-    def _str_(self):
+    sub_category = models.CharField(max_length=100, blank=True, null=True)  
+    def __str__(self):
 
         return self.name
+    
+
+class Landing_img(models.Model):
+    image = models.ImageField(upload_to='uploads/landing/')
+    title = models.CharField(max_length=100, blank=True, null=True)
+
+    def __str__(self):
+        return self.title 
+
 
 
 
@@ -39,7 +48,7 @@ class Customer(models.Model):
     email = models.EmailField(max_length=100)
     password = models.CharField(max_length=100)  # Fixed from PasswordField to CharField
 
-    def _str_(self):
+    def __str__(self):
         return self.first_name
 
 
@@ -55,7 +64,7 @@ class Order(models.Model):
     status = models.BooleanField(default=False)
     date = models.DateField(default=datetime.date.today)
 
-    def _str_(self):
+    def __str__(self):
         return self.product
 
 

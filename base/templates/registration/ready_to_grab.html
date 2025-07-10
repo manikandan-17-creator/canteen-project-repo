@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'accounts/ready_to_grab.css' %}">
+    <title>LICET Cafeteria: Ready-To-Grab</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    
-
+    <link rel="stylesheet" href="{% static 'accounts/ready_to_grab.css' %}">
 </head>
 <body>
     <!-- Hamburger Menu -->
@@ -17,11 +16,19 @@
         <div class="bar"></div>
     </div>
 
-        <!-- User Button -->
-    <div class="user-button">
-        <img src="images/User-Logo.jpg" alt="User Profile">
-        <span class="user-info">User Name</span>
+    <!-- Navigation of Side Bar-->
+    <nav class="sidebar" id="sidebar">
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'cart_summary' %}">Cart</a>
+    <a href="{% url 'contact' %}">Contact</a> <!-- or use mailto or a contact section -->
+    </nav>
+
+    <!-- User Button -->
+        <div class="user-button">
+    <img id="profilePic" src="Images/Ready-To-Grab/User-Logo.png" alt="User Profile">
+    <span class="user-info" id="profileName">User Name</span>
     </div>
+
 
     <!-- Sidebar Navigation -->
     <nav class="sidebar" id="sidebar">
@@ -33,7 +40,7 @@
 
     <!-- Header Section -->
     <div class="header-logo">
-        <img src="images/licet_logo.png" alt="LICET Cafeteria Logo">
+        <img src="Images/Ready-To-Grab/licet_logo.png" alt="LICET Cafeteria Logo">
         <h1>LICET Cafeteria</h1>
     </div>
     
@@ -42,40 +49,6 @@
     <p class="menu-heading">Quick bites, no waits your meal is ready!</p>
 
     <div class="container">
-        <!-- Existing beverage sections remain unchanged -->
-        <!-- ... (keep all the existing beverage sections as they are) ... -->
-    </div>
-
-    <script>
-        // Toggle Sidebar
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('active');
-        }
-
-        // Close sidebar when clicking outside
-        document.addEventListener('click', function(event) {
-            const sidebar = document.getElementById('sidebar');
-            const hamburger = document.querySelector('.hamburger-menu');
-            
-            if (!sidebar.contains(event.target) && !hamburger.contains(event.target)) {
-                sidebar.classList.remove('active');
-            }
-        });
-    </script>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LICET Cafeteria - Ready to Grab</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
-</head>
-<body>
-     <div class="container">
         <!-- Lunch Veg -->
         <section class="category-section hot-beverages">
             <div class="category-header">
@@ -83,70 +56,70 @@
             </div>
             <div class="scroll-container">
                 <div class="beverage-card">
-                    <img src="images/Veg Meals.jpg" class="beverage-image" alt="Masala Chai">
+                    <img src="Images/Ready-To-Grab/Veg Meals.jpg" class="beverage-image" alt="Masala Chai">
                     <h3>Veg Meals</h3>
                     <p>All-in-one veggie delight!</p>
                     <div class="price-tag">₹80</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
                 <div class="beverage-card">
-                    <img src="images/Sambar Rice.jpg" class="beverage-image" alt="Filter Coffee">
+                    <img src="Images/Ready-To-Grab/Sambar Rice.jpg" class="beverage-image" alt="Filter Coffee">
                     <h3>Sambar Rice</h3>
                     <p>South Indian soul in every spoon</p>
                     <div class="price-tag">₹70</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
                 <div class="beverage-card">
-                    <img src="images/Curd Rice.jpg" class="beverage-image" alt="Hot Chocolate">
+                    <img src="Images/Ready-To-Grab/Curd Rice.jpg" class="beverage-image" alt="Hot Chocolate">
                     <h3>Curd Rice</h3>
                     <p>Cool, calm, and comforting</p>
                     <div class="price-tag">₹40</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
                 <div class="beverage-card">
-                    <img src="images/Variety Rice.jpg" class="beverage-image" alt="Green Tea">
+                    <img src="Images/Ready-To-Grab/Variety Rice.jpg" class="beverage-image" alt="Green Tea">
                     <h3>Variety Rice</h3>
                     <p>Different flavors, one great meal</p>
                     <div class="price-tag">₹75</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
                 <div class="beverage-card">
-                    <img src="images/Veg Biryani.jpg" class="beverage-image" alt="Cappuccino">
+                    <img src="Images/Ready-To-Grab/Veg Biryani.jpg" class="beverage-image" alt="Cappuccino">
                     <h3>Veg Biryani</h3>
                     <p>Aromatic layers of veggie love</p>
                     <div class="price-tag">₹70</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
                 <div class="beverage-card">
-                    <img src="images/Mushroom Biryani.jpg" class="beverage-image" alt="Turmeric Tea">
+                    <img src="Images/Ready-To-Grab/Mushroom Biryani.jpg" class="beverage-image" alt="Turmeric Tea">
                     <h3>Mushroom Biryani</h3>
                     <p>Earthy bites in royal spice</p>
                     <div class="price-tag">₹80</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
                 <div class="beverage-card">
-                    <img src="images/Paneer Biryani.jpg" class="beverage-image" alt="Masala Chai">
+                    <img src="Images/Ready-To-Grab/Paneer Biryani.jpg" class="beverage-image" alt="Masala Chai">
                     <h3>Paneer Biryani</h3>
                     <p>Paneer-packed biryani perfection</p>
                     <div class="price-tag">₹75</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
                 <div class="beverage-card">
-                    <img src="images/Chapathi.jpg" class="beverage-image" alt="Cappuccino">
-                    <h3>Chapathi</h3>
+                    <img src="Images/Ready-To-Grab/Chapathi.jpg" class="beverage-image" alt="Cappuccino">
+                    <h3>Chapathi (2)</h3>
                     <p>Aromatic layers of veggie love</p>
                     <div class="price-tag">₹40</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
                 <div class="beverage-card">
-                    <img src="images/Parotta.jpg" class="beverage-image" alt="Turmeric Tea">
-                    <h3>Parotta </h3>
+                    <img src="Images/Ready-To-Grab/Parotta.jpg" class="beverage-image" alt="Turmeric Tea">
+                    <h3>Parotta (S)</h3>
                     <p>Flaky layers of happiness with gravy</p>
                     <div class="price-tag">₹50</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
                 <div class="beverage-card">
-                    <img src="images/Chilly Parotta.jpg" class="beverage-image" alt="Masala Chai">
+                    <img src="Images/Ready-To-Grab/Chilly Parotta.jpg" class="beverage-image" alt="Masala Chai">
                     <h3>Chilly Parotta</h3>
                     <p>A fiery twist to your favorite flatbread</p>
                     <div class="price-tag">₹75</div>
@@ -162,28 +135,28 @@
             </div>
             <div class="scroll-container">
                 <div class="beverage-card">
-                    <img src="images/Non-Veg Meals.jpg" class="beverage-image" alt="Lemonade">
+                    <img src="Images/Ready-To-Grab/Non-Veg Meals.jpg" class="beverage-image" alt="Lemonade">
                     <h3>Non-Veg Meals</h3>
                     <p>Wholesome and hearty, the desi way</p>
                     <div class="price-tag">₹90</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
                 <div class="beverage-card">
-                    <img src="images/Egg Biryani.jpg" class="beverage-image" alt="Iced Coffee">
+                    <img src="Images/Ready-To-Grab/Egg Biryani.jpg" class="beverage-image" alt="Iced Coffee">
                     <h3>Egg Biryani</h3>
                     <p>Eggs meet masala in harmony</p>
                     <div class="price-tag">₹75</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
                 <div class="beverage-card">
-                    <img src="images/Chicken Biryani.jpg" class="beverage-image" alt="Milkshake">
+                    <img src="Images/Ready-To-Grab/Chicken Biryani.jpg" class="beverage-image" alt="Milkshake">
                     <h3>Chicken Biryani</h3>
                     <p>A wholesome of the king of all biryanis</p>
                     <div class="price-tag">₹70</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
                 <div class="beverage-card">
-                    <img src="images/Chicken 65.jpg" class="beverage-image" alt="Soda">
+                    <img src="Images/Ready-To-Grab/Chicken 65.jpg" class="beverage-image" alt="Soda">
                     <h3>Chicken 65</h3>
                     <p>Crispy, spicy, legendary</p>
                     <p>Protein per plate 30 gms</p>
@@ -191,7 +164,7 @@
                     <button class="order-btn">Add to Cart</button>
                 </div>
                 <div class="beverage-card">
-                    <img src="images/Chilly Chicken.jpg" class="beverage-image" alt="Smoothie">
+                    <img src="Images/Ready-To-Grab/Chilly Chicken.jpg" class="beverage-image" alt="Smoothie">
                     <h3>Chilly Chicken</h3>
                     <p>Bold flavor, bold crunch</p>
                     <p>Protein per plate 27 gms</p>
@@ -199,14 +172,22 @@
                     <button class="order-btn">Add to Cart</button>
                 </div>
                 <div class="beverage-card">
-                    <img src="images/Chicken Munchurian.jpg" class="beverage-image" alt="Iced Tea">
-                    <h3>Chicken Munchurian</h3>
+                    <img src="Images/Ready-To-Grab/Chicken 65 Biryani.jpg" class="beverage-image" alt="Smoothie">
+                    <h3>Chicken 65 Biryani</h3>
+                    <p>Bold flavor, bold crunch</p>
+                    <p>Protein per plate 27 gms</p>
+                    <div class="price-tag">₹75</div>
+                    <button class="order-btn">Add to Cart</button>
+                </div>
+                <div class="beverage-card">
+                    <img src="Images/Ready-To-Grab/Chicken Munchurian.jpg" class="beverage-image" alt="Iced Tea">
+                    <h3>Chicken Manchurian</h3>
                     <p>Indo-Chinese magic in a bite</p>
                     <div class="price-tag">₹75</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
                 <div class="beverage-card">
-                    <img src="images/Egg Podi Mass.jpg" class="beverage-image" alt="Iced Tea">
+                    <img src="Images/Ready-To-Grab/Egg Podi Mass.jpg" class="beverage-image" alt="Iced Tea">
                     <h3>Egg Podi Mass</h3>
                     <p>Eggs with a spicy punch!</p>
                     <p>Protein per plate 10 gms</p>
@@ -216,22 +197,78 @@
             </div>
         </section>
 
-    <a href="{% url 'cart' %} ">
-        <button class="cart-button">🛒 Cart (<span id="cart-count">0</span>)</button>
-    </a>
+        <button class="cart-button" onclick="window.location.href='6.Cart.html'">🛒 Cart (<span id="cart-count">0</span>)</button>
+
     </div>
 
+    <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 LICET Cafeteria. All rights reserved.</p>
+    <div class="social-links">
+      <a href="#" aria-label="Facebook"><img src="Images/Landing Page/facebook.jpg" alt="Facebook"></a>
+      <a href="#" aria-label="Instagram"><img src="Images/Landing Page/instagram.jpg" alt="Instagram"></a>
+      <a href="#" aria-label="Twitter"><img src="Images/Landing Page/X.png" alt="Twitter"></a>
+    </div>
+  </footer>
 
     <script>
-        let cartCount = 0;
-        const cartElement = document.getElementById('cart-count');
-        
-        document.querySelectorAll('.order-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                cartCount++;
-                cartElement.textContent = cartCount;
-            });
-        });
-    </script>
-</body>
-</html>
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('active');
+  }
+
+  document.addEventListener('click', function(event) {
+    const sidebar = document.getElementById('sidebar');
+    const hamburger = document.querySelector('.hamburger-menu');
+    if (!sidebar.contains(event.target) && !hamburger.contains(event.target)) {
+      sidebar.classList.remove('active');
+    }
+  });
+
+  // ---------------- CART SYSTEM ----------------
+
+  const cartElement = document.getElementById('cart-count');
+
+  function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const total = cart.reduce((sum, item) => sum + item.qty, 0);
+    cartElement.textContent = total;
+  }
+
+  function addToCart(item) {
+    let cart = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+    const existingIndex = cart.findIndex(i => i.name === item.name);
+    if (existingIndex !== -1) {
+      cart[existingIndex].qty += 1;
+    } else {
+      cart.push({ ...item, qty: 1 });
+    }
+
+    localStorage.setItem('cartItems', JSON.stringify(cart));
+    updateCartCount();
+  }
+
+  // Attach to all buttons
+  document.querySelectorAll('.order-btn').forEach(button => {
+    button.addEventListener('click', () => {
+      const card = button.closest('.beverage-card');
+      const name = card.querySelector('h3').textContent;
+      const price = parseInt(card.querySelector('.price-tag').textContent.replace('₹', ''));
+      const img = card.querySelector('img').src;
+
+      addToCart({ name, price, img });
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    updateCartCount();
+
+    const data = JSON.parse(localStorage.getItem('userData')) || {};
+    if (data.fullName) {
+      document.getElementById('profileName').textContent = data.fullName;
+    }
+    if (data.profilePic) {
+      document.getElementById('profilePic').src = data.profilePic;
+    }
+  });
+</script>

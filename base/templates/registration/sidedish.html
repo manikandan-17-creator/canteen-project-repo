@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LICET Cafeteria: Sidedish</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    {% load static %}
     <link rel="stylesheet" href="{% static 'accounts/sidedish.css' %}">
 </head>
 <body>
@@ -16,11 +16,18 @@
         <div class="bar"></div>
     </div>
 
+    <!-- Navigation of Side Bar-->
+    <nav class="sidebar" id="sidebar">
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'cart_summary' %}">Cart</a>
+    <a href="{% url 'contact' %}">Contact</a> <!-- or use mailto or a contact section -->
+    </nav>
     <!-- User Button -->
     <div class="user-button">
-        <img src="Images/Sidedish/User-Logo.png" alt="User Profile">
-        <span class="user-info">User Name</span>
+    <img id="profilePic" src="Images/Ready-To-Grab/User-Logo.png" alt="User Profile">
+    <span class="user-info" id="profileName">User Name</span>
     </div>
+
 
     <!-- Sidebar Navigation -->
     <nav class="sidebar" id="sidebar">
@@ -43,7 +50,7 @@
         <!-- Fried Variety -->
         <section class="category-section hot-beverages">
             <div class="category-header">
-                <h2>Fried</h2>
+                <h2>Veg Fried</h2>
             </div>
             <div class="scroll-container">
                 <div class="beverage-card">
@@ -88,9 +95,81 @@
                     <div class="price-tag">₹40</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
+            <div class="beverage-card">
+                <img src="Images/Sidedish/panner65.jpg" class="beverage-image" alt="Panner - 65">
+                <h3>Panner - 65</h3>
+                <p>Spicy fried</p>
+                <div class="price-tag">₹90</div>
+                <button class="order-btn">Add to Cart</button>
+            </div>
+
+            <div class="beverage-card">
+                <img src="Images/Sidedish/gobi65.jpg" class="beverage-image" alt="Gobi - 65">
+                <h3>Gobi - 65</h3>
+                <p>Crispy cauliflower</p>
+                <div class="price-tag">₹60</div>
+                <button class="order-btn">Add to Cart</button>
+            </div>
+
+            <div class="beverage-card">
+                <img src="Images/Sidedish/mushroom65.jpg" class="beverage-image" alt="Mushroom - 65">
+                <h3>Mushroom - 65</h3>
+                <p>Fried mushrooms</p>
+                <div class="price-tag">₹80</div>
+                <button class="order-btn">Add to Cart</button>
+            </div>
+
+            <div class="beverage-card">
+                <img src="Images/Sidedish/gobi-manchurian.jpg" class="beverage-image" alt="Gobi Manchurian">
+                <h3>Gobi Manchurian</h3>
+                <p>Saucy cauliflower</p>
+                <div class="price-tag">₹70</div>
+                <button class="order-btn">Add to Cart</button>
+            </div>
+
+            <div class="beverage-card">
+                <img src="Images/Sidedish/Panner Manchurian.jpg" class="beverage-image" alt="Panner Manchurian">
+                <h3>Panner Manchurian</h3>
+                <p>Tangy paneer</p>
+                <div class="price-tag">₹85</div>
+                <button class="order-btn">Add to Cart</button>
+            </div>
+
+            <div class="beverage-card">
+                <img src="Images/Sidedish/chilly-panner.jpg" class="beverage-image" alt="Chilly Panner">
+                <h3>Chilly Panner</h3>
+                <p>Spicy paneer</p>
+                <div class="price-tag">₹85</div>
+                <button class="order-btn">Add to Cart</button>
+            </div>
+
+            <div class="beverage-card">
+                <img src="Images/Sidedish/mushroom-manchurian.jpg" class="beverage-image" alt="Mushroom Manchurian">
+                <h3>Mushroom Manchurian</h3>
+                <p>Tangy mushrooms</p>
+                <div class="price-tag">₹80</div>
+                <button class="order-btn">Add to Cart</button>
+            </div>
+
+            <div class="beverage-card">
+                <img src="Images/Sidedish/samosa.jpg" class="beverage-image" alt="Somosa">
+                <h3>Samosa</h3>
+                <p>Stuffed pastry</p>
+                <div class="price-tag">₹15</div>
+                <button class="order-btn">Add to Cart</button>
+            </div>
+
+            <div class="beverage-card">
+                <img src="Images/Sidedish/french-fries.jpg" class="beverage-image" alt="French Fries">
+                <h3>French Fries</h3>
+                <p>Crispy potatoes</p>
+                <div class="price-tag">₹50</div>
+                <button class="order-btn">Add to Cart</button>
+            </div>
             </div>
         </section>
 
+        
         <!-- Poriyal Varietie -->
         <section class="category-section cold-beverages">
             <div class="category-header">
@@ -196,31 +275,77 @@
         <button class="cart-button" onclick="window.location.href='6.Cart.html'">🛒 Cart (<span id="cart-count">0</span>)</button>
     </div>
 
-    <script>
-        // Toggle Sidebar
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('active');
-        }
+        <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 LICET Cafeteria. All rights reserved.</p>
+        <div class="social-links">
+        <a href="#" aria-label="Facebook"><img src="Images/Landing Page/facebook.jpg" alt="Facebook"></a>
+        <a href="#" aria-label="Instagram"><img src="Images/Landing Page/instagram.jpg" alt="Instagram"></a>
+        <a href="#" aria-label="Twitter"><img src="Images/Landing Page/X.png" alt="Twitter"></a>
+        </div>
+    </footer>
 
-        // Close sidebar when clicking outside
-        document.addEventListener('click', function(event) {
-            const sidebar = document.getElementById('sidebar');
-            const hamburger = document.querySelector('.hamburger-menu');
-            
-            if (!sidebar.contains(event.target) && !hamburger.contains(event.target)) {
-                sidebar.classList.remove('active');
-            }
-        });
+<script>
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('active');
+  }
 
-        let cartCount = 0;
-        const cartElement = document.getElementById('cart-count');
-        
-        document.querySelectorAll('.order-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                cartCount++;
-                cartElement.textContent = cartCount;
-            });
-        });
-    </script>
+  document.addEventListener('click', function(event) {
+    const sidebar = document.getElementById('sidebar');
+    const hamburger = document.querySelector('.hamburger-menu');
+    if (!sidebar.contains(event.target) && !hamburger.contains(event.target)) {
+      sidebar.classList.remove('active');
+    }
+  });
+
+  // ---------------- CART SYSTEM ----------------
+
+  const cartElement = document.getElementById('cart-count');
+
+  function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const total = cart.reduce((sum, item) => sum + item.qty, 0);
+    cartElement.textContent = total;
+  }
+
+  function addToCart(item) {
+    let cart = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+    const existingIndex = cart.findIndex(i => i.name === item.name);
+    if (existingIndex !== -1) {
+      cart[existingIndex].qty += 1;
+    } else {
+      cart.push({ ...item, qty: 1 });
+    }
+
+    localStorage.setItem('cartItems', JSON.stringify(cart));
+    updateCartCount();
+  }
+
+  // Attach to all buttons
+  document.querySelectorAll('.order-btn').forEach(button => {
+    button.addEventListener('click', () => {
+      const card = button.closest('.beverage-card');
+      const name = card.querySelector('h3').textContent;
+      const price = parseInt(card.querySelector('.price-tag').textContent.replace('₹', ''));
+      const img = card.querySelector('img').src;
+
+      addToCart({ name, price, img });
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    updateCartCount();
+
+    const data = JSON.parse(localStorage.getItem('userData')) || {};
+    if (data.fullName) {
+      document.getElementById('profileName').textContent = data.fullName;
+    }
+    if (data.profilePic) {
+      document.getElementById('profilePic').src = data.profilePic;
+    }
+  });
+</script>
+
 </body>
 </html>

@@ -96,6 +96,7 @@ def ready_to_grab(request):
     return render(request, 'registration/ready_to_grab.html',{'products':products})
 
 def cooked_to_serve(request):
+    products = Product.objects.filter(category__name='Cooked to Serve')
     return render(request, 'registration/cooked_to_serve.html',{'products':products})
 
 def beverages(request):
@@ -105,6 +106,8 @@ def menu(request):
     # Initialize cart count from session
     cart_count = sum(request.session.get('cart', {}).values())
     return render(request, 'menu.html', {'cart_count': cart_count})
+
+
 
 def add_to_cart(request):
     if request.method == 'POST':
@@ -161,3 +164,6 @@ def snacks(request):
 
 def sidedish(request):
     return render(request, 'registration/sidedish.html',{'products':products})
+
+def contact(request):
+    return render(request, 'registration/contact.html')
