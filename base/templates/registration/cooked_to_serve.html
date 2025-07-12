@@ -55,180 +55,58 @@
             <div class="category-header">
                 <h2>Veg Lunch</h2>
             </div>
-            <div class="scroll-container">
+            {% for product in products %}
+                {% if product.sub_category == 'VEG LUNCH' %}
                 <div class="beverage-card">
-                    <img src="Images/Cooked-To-Serve/Veg Fried Rice.jpg" class="beverage-image" alt="Masala Chai">
-                    <h3>Veg Fried Rice</h3>
-                    <p>Wok-fried goodness in every forkful</p>
-                    <div class="price-tag">₹80</div>
+                    <img src="{{product.image.url}}" class="beverage-image" alt="Masala Chai">
+                    <h3>{{ product.name }}</h3>
+                    <div class="price-tag">₹{{ product.price}}</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
-                <div class="beverage-card">
-                    <img src="Images/Cooked-To-Serve/Gobi Fried Rice.jpg" class="beverage-image" alt="Filter Coffee">
-                    <h3>Gobi Fried Rice</h3>
-                    <p>Crispy Gobi meets spicy stir-fry</p>
-                    <div class="price-tag">₹70</div>
-                    <button class="order-btn">Add to Cart</button>
-                </div>
-                <div class="beverage-card">
-                    <img src="Images/Cooked-To-Serve/Paneer Fried Rice.jpg" class="beverage-image" alt="Hot Chocolate">
-                    <h3>Paneer Fried Rice</h3>
-                    <p>Paneer power in every bite</p>
-                    <div class="price-tag">₹80</div>
-                    <button class="order-btn">Add to Cart</button>
-                </div>
-                <div class="beverage-card">
-                    <img src="Images/Cooked-To-Serve/Mushroom Fried Rice.jpg" class="beverage-image" alt="Green Tea">
-                    <h3>Mushroom Fried Rice</h3>
-                    <p>Mushrooms made mouthwatering</p>
-                    <div class="price-tag">₹75</div>
-                    <button class="order-btn">Add to Cart</button>
-                </div>
-                <div class="beverage-card">
-                    <img src="Images/Cooked-To-Serve/Veg Schezwan Fried Rice.jpg" class="beverage-image" alt="Cappuccino">
-                    <h3>Veg Schezwan Fried Rice</h3>
-                    <p>Spice up your life, one bite at a time</p>
-                    <div class="price-tag">₹70</div>
-                    <button class="order-btn">Add to Cart</button>
-                </div>
-                <div class="beverage-card">
-                    <img src="Images/Cooked-To-Serve/Mixed Veg Rice.jpg" class="beverage-image" alt="Turmeric Tea">
-                    <h3>Mixed fried Rice</h3>
-                    <p>A riot of flavors in one bowl</p>
-                    <div class="price-tag">₹80</div>
-                    <button class="order-btn">Add to Cart</button>
-                </div>
-
-                <div class="beverage-card">
-                    <img src="Images/Cooked-To-Serve/Mushroom Schezwan Veg Rice.jpg" class="beverage-image" alt="Cappuccino">
-                    <h3>Mushroom Schezwan Veg Rice</h3>
-                    <p>Spice Mushroom</p>
-                    <div class="price-tag">₹70</div>
-                    <button class="order-btn">Add to Cart</button>
-                </div>
-                
+                {% endif %}
+            {% endfor %}
             </div>
         </section>
-
+    <div class="container">
         <!-- Non-Veg -->
         <section class="category-section cold-beverages">
             <div class="category-header">
                 <h2>Non-Veg Lunch</h2>
             </div>
-            <div class="scroll-container">
+            {% for product in products %}
+                {% if product.sub_category == 'NON VEG' %}
                 <div class="beverage-card">
-                    <img src="Images/Cooked-To-Serve/Egg Fried Rice.jpg" class="beverage-image" alt="Lemonade">
-                    <h3>Egg Fried Rice</h3>
-                    <p>Egged up for extra taste</p>
-                    <div class="price-tag">₹60</div>
+                    <img src="{{product.image.url}}" class="beverage-image" alt="Masala Chai">
+                    <h3>{{ product.name }}</h3>
+                    <div class="price-tag">₹{{ product.price}}</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
-                <div class="beverage-card">
-                    <img src="Images/Cooked-To-Serve/Chicken Fried Rice.jpg" class="beverage-image" alt="Iced Coffee">
-                    <h3>Chicken Fried Rice</h3>
-                    <p>The perfect wok-tossed bite</p>
-                    <div class="price-tag">₹75</div>
-                    <button class="order-btn">Add to Cart</button>
-                </div>
-                <div class="beverage-card">
-                    <img src="Images/Cooked-To-Serve/Chicken Schezwan Fried Rice.jpg" class="beverage-image" alt="Milkshake">
-                    <h3>Chicken Schezwan fried Rice</h3>
-                    <p>Spicy, saucy, and bold</p>
-                    <div class="price-tag">₹70</div>
-                    <button class="order-btn">Add to Cart</button>
-                </div>
-                <div class="beverage-card">
-                    <img src="Images/Cooked-To-Serve/Chicken Chilli Parotta.jpg" class="beverage-image" alt="Soda">
-                    <h3>Chicken Chilli Parotta</h3>
-                    <p>Heat, meat, and flaky street</p>
-                    <div class="price-tag">₹90</div>
-                    <button class="order-btn">Add to Cart</button>
-                </div>   
+                {% endif %}
+            {% endfor %}
             </div>
         </section>
+
         
+    <div class="container">
         <!--Veg -->
         <section class="category-section hot-beverages">
             <div class="category-header">
                 <h2>Veg Noodles</h2>
             </div>
-            <div class="scroll-container">
+            {% for product in products %}
+                {% if product.sub_category == 'VEG NOODLES' %}
                 <div class="beverage-card">
-                    <img src="Images/Cooked-To-Serve/Veg Noodles.jpg" class="beverage-image" alt="Lemonade">
-                    <h3>Veg Noodles</h3>
-                    <p>Wok-fried goodness in every forkful</p>
-                    <div class="price-tag">₹60</div>
+                    <img src="{{product.image.url}}" class="beverage-image" alt="Masala Chai">
+                    <h3>{{ product.name }}</h3>
+                    <div class="price-tag">₹{{ product.price}}</div>
                     <button class="order-btn">Add to Cart</button>
                 </div>
-                <div class="beverage-card">
-                    <img src="Images/Cooked-To-Serve/Gobi Noodles.jpg" class="beverage-image" alt="Iced Coffee">
-                    <h3>Gobi Noodles</h3>
-                    <p>Crispy Gobi meets spicy stir-fry</p>
-                    <div class="price-tag">₹75</div>
-                    <button class="order-btn">Add to Cart</button>
-                </div>
-                <div class="beverage-card">
-                    <img src="Images/Cooked-To-Serve/Paneer Noodles.jpg" class="beverage-image" alt="Milkshake">
-                    <h3>Paneer Noodles</h3>
-                    <p>Paneer power in every bite</p>
-                    <div class="price-tag">₹70</div>
-                    <button class="order-btn">Add to Cart</button>
-                </div>
-                <div class="beverage-card">
-                    <img src="Images/Cooked-To-Serve/Mushroom Noodles.jpg" class="beverage-image" alt="Soda">
-                    <h3>Mushroom Noodles</h3>
-                    <p>Mushrooms made mouthwatering</p>
-                    <div class="price-tag">₹80</div>
-                    <button class="order-btn">Add to Cart</button>
-                </div> 
-
-                <div class="beverage-card">
-                    <img src="Images/Cooked-To-Serve/Mushroom schezwan Noodles.jpg" class="beverage-image" alt="Soda">
-                    <h3>Mushroom schezwan Noodles</h3>
-                    <p>Spicy Mushrooms</p>
-                    <div class="price-tag">₹80</div>
-                    <button class="order-btn">Add to Cart</button>
-                </div> 
-                <div class="beverage-card">
-                    <img src="Images/Cooked-To-Serve/Veg Schezwan Noodles.jpg" class="beverage-image" alt="Soda">
-                    <h3>Veg Schezwan Noodles</h3>
-                    <p>Spice up your life, one bite at a time</p>
-                    <div class="price-tag">₹80</div>
-                    <button class="order-btn">Add to Cart</button>
-                </div>     
+                {% endif %}
+            {% endfor %}   
             </div>
         </section>
 
-        <!-- Non-Veg -->
-        <section class="category-section cold-beverages">
-            <div class="category-header">
-                <h2>Non-Veg Veg Noodles</h2>
-            </div>
-            <div class="scroll-container">
-                <div class="beverage-card">
-                    <img src="Images/Cooked-To-Serve/Egg Noodles.jpg" class="beverage-image" alt="Egg Noodles">
-                    <h3>Egg Noodles</h3>
-                    <p>Egged up for extra taste</p>
-                    <div class="price-tag">₹60</div>
-                    <button class="order-btn">Add to Cart</button>
-                </div>
-                <div class="beverage-card">
-                    <img src="Images/Cooked-To-Serve/Chicken Noodles.jpg" class="beverage-image" alt="Chicken Noodles">
-                    <h3>Chicken Noodles</h3>
-                    <p>The perfect wok-tossed bite</p>
-                    <div class="price-tag">₹75</div>
-                    <button class="order-btn">Add to Cart</button>
-                </div>
-                <div class="beverage-card">
-                    <img src="Images/Cooked-To-Serve/Chicken Schezwan Noodles.jpg" class="beverage-image" alt="Chicken Schezwan Noodles">
-                    <h3>Chicken Schezwan Noodles</h3>
-                    <p>Spicy, saucy, and bold</p>
-                    <div class="price-tag">₹70</div>
-                    <button class="order-btn">Add to Cart</button>
-                </div>
-            </div>
-        </section>
-
+       
         <button class="cart-button" onclick="window.location.href='6.Cart.html'">🛒 Cart (<span id="cart-count">0</span>)</button>
     </div>
 

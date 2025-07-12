@@ -93,10 +93,11 @@ def custom_logout(request):
     return redirect('login')  # Redirect to the login page (URL name must be 'login')
 
 def ready_to_grab(request):
+    products = Product.objects.filter(category__name='ready to grab')
     return render(request, 'registration/ready_to_grab.html',{'products':products})
 
 def cooked_to_serve(request):
-    products = Product.objects.filter(category__name='Cooked to Serve')
+    products = Product.objects.filter(category__name='cook to serve')
     return render(request, 'registration/cooked_to_serve.html',{'products':products})
 
 def beverages(request):
